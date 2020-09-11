@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserDAO">
+
+	<insert id="insertUser" parameterType="user">
+		INSERT INTO MEMBER_T (ID, NAME, PASSWORD, EMAIL, NIKNAME)
+		VALUES (#{id}, #{name}, #{password}, #{email}, #{nikname} )
+	</insert>
+	
+	<select id="getUser" parameterType="String" resultType="com.spring.biz.user.UserVO">
+		SELECT * FROM MEMBER_T WHERE ID = #{id}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

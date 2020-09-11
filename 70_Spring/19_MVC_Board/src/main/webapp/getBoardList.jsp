@@ -62,7 +62,9 @@
 			<th width="150">작성일</th>
 			<th width="100">조회수</th>
 		</tr>
-		<% for (BoardVO board : boardList) { %>
+		<%
+			for (BoardVO board : boardList) {
+		%>
 		<tr>
 			<td class="center"><%=board.getSeq() %></td>
 			<td>

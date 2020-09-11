@@ -1,6 +1,6 @@
 <%@page import="com.spring.biz.board.BoardVO"%>
 <%@page import="java.util.List"%>
-<%@page import="com.spring.biz.board.impl.BoardDAO"%>
+<%@page import="com.spring.biz.board.impl.BoardDAOSpring"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- DB데이터 조회하고 조회된 데이터 화면 출력 --%>

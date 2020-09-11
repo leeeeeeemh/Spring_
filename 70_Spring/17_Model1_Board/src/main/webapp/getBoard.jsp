@@ -15,7 +15,6 @@
 	BoardVO board = boardDAO.getBoard(vo);
 	
 	// 3. 조회 데이터 화면 표시(HTML 작성)
-	
 %>
 <!DOCTYPE html>
 <html>

@@ -21,6 +21,4 @@
 		
 	// 3. 화면 네비게이션(목록페이지로 이동)
 	response.sendRedirect("getBoardList.jsp");
-	
-	
 %>

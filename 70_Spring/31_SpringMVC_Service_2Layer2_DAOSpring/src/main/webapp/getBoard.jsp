@@ -1,4 +1,4 @@
-<%@page import="com.spring.biz.board.impl.BoardDAO"%>
+<%@page import="com.spring.biz.board.impl.BoardDAOSpring"%>
 <%@page import="com.spring.biz.board.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>

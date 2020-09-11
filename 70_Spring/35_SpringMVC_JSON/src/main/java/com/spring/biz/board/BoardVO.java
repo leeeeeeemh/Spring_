@@ -4,6 +4,8 @@ import java.sql.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /*
 CREATE TABLE BOARD (
     SEQ NUMBER(5) PRIMARY KEY,
@@ -89,7 +91,7 @@ public class BoardVO {
 	}
 
 	//===============================
-
+	@JsonIgnore //JSON 데이타 변경하지 않도록 제외 처리
 	public String getSearchCondition() {
 		return searchCondition;
 	}
@@ -97,7 +99,7 @@ public class BoardVO {
 	public void setSearchCondition(String searchCondition) {
 		this.searchCondition = searchCondition;
 	}
-
+	@JsonIgnore //JSON 데이타 변경하지 않도록 제외 처리
 	public String getSearchKeyword() {
 		return searchKeyword;
 	}
@@ -107,7 +109,7 @@ public class BoardVO {
 	}
 
 	//========== 파일 업로드 관련 =============
-
+	@JsonIgnore //JSON 데이타 변경하지 않도록 제외 처리
 	public MultipartFile getUploadFile() {
 		return uploadFile;
 	}
