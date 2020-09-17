@@ -55,11 +55,11 @@ function buildCalendar() {
       column.innerText = autoLeftPad(day, 2);
 
       if (dom % 7 == 1) {
-        column.style.color = "#FF4D4D";
+        column.style.color = "#FF8400";
       }
 
       if (dom % 7 == 0) {
-        column.style.color = "#4D4DFF";
+        column.style.color = "blue";
         row = tbCalendar.insertRow(); // @param 토요일이 지나면 다시 가로 행을 한줄 추가한다.
       }
     } else {
@@ -71,7 +71,7 @@ function buildCalendar() {
     if (today.getFullYear() == date.getFullYear()) {
       if (today.getMonth() == date.getMonth()) {
         if (date.getDate() > day && Math.sign(day) == 1) {
-          column.style.backgroundColor = "#E5E5E5";
+          column.style.backgroundColor = "#eee";
         } else if (date.getDate() < day && lastDate.getDate() >= day) {
           column.style.backgroundColor = "#FFFFFF";
           column.style.cursor = "pointer";
@@ -79,7 +79,7 @@ function buildCalendar() {
             calendarChoiceDay(this);
           };
         } else if (date.getDate() == day) {
-          column.style.backgroundColor = "#FFFFE6";
+          column.style.backgroundColor = "#fff3e7";
           column.style.cursor = "pointer";
           column.onclick = function () {
             calendarChoiceDay(this);
@@ -87,7 +87,7 @@ function buildCalendar() {
         }
       } else if (today.getMonth() < date.getMonth()) {
         if (Math.sign(day) == 1 && day <= lastDate.getDate()) {
-          column.style.backgroundColor = "#E5E5E5";
+          column.style.backgroundColor = "#eee";
         }
       } else {
         if (Math.sign(day) == 1 && day <= lastDate.getDate()) {
@@ -100,7 +100,7 @@ function buildCalendar() {
       }
     } else if (today.getFullYear() < date.getFullYear()) {
       if (Math.sign(day) == 1 && day <= lastDate.getDate()) {
-        column.style.backgroundColor = "#E5E5E5";
+        column.style.backgroundColor = "#eee";
       }
     } else {
       if (Math.sign(day) == 1 && day <= lastDate.getDate()) {
@@ -139,23 +139,11 @@ function autoLeftPad(num, digit) {
 // ------------------------- popup ----------------------------
 $().ready(function () {
   // 탭메뉴
-  $(".roadmap-schedule").click(function () {
+  $(".roadMapNav li").click(function () {
     var idx = $(this).index();
-    $(".todoNav li").removeClass("active");
+    $(".roadMapNav li").removeClass("active");
     $(this).addClass("active");
-    $(".todoCont > li").removeClass("active");
-    $(".todoCont > li").eq(idx).addClass("active");
-  });
-
-  // 팝업열기
-  $(".todoContList li a, .departTodo dd li a").click(function () {
-    $(".workPopup").show();
-    $(".darkBack").show();
-  });
-
-  // 팝업닫기
-  $(".popupOK").click(function () {
-    $(".workPopup").hide();
-    $(".darkBack").hide();
+    $(".roadMapCont > div").hide();
+    $(".roadMapCont > div").eq(idx).show();
   });
 });

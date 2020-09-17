@@ -23,6 +23,8 @@
 }
 
 .chatBox p {
+    width: 90%;
+    margin: 0 auto;
     position: relative;
     height: 50px;
     background: url(../img/bar.png) repeat-x center;

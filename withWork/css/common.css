@@ -458,13 +458,9 @@ footer {
     font-size: 17px;
     transition: 0.3s;
 }
-.memberTab .tabs li a:hover {
-    background-color: #fd9f3b;
-    color: white;
-}
-
 .memberTab .tabs li.active a {
     background-color: #fd9f3b;
+    font-weight: 500;
     color: white;  
 }
 .memberCont .tab_content > div {
@@ -614,6 +610,7 @@ footer {
 }
 
 .msgPopupAll {
+    overflow: auto;
     border-top: 1px solid #ddd;
     padding-top: 20px;
     padding-left: 20px;
@@ -629,7 +626,6 @@ footer {
 }
 
 .msgPopupA {
-    overflow: auto;
     height: 542px;
 }
 

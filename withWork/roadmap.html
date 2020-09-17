@@ -66,106 +66,156 @@
       </ul>
     </header>
 
-    <!-- ---------------------------------------------------------------------------------------------------- -->
+    <!-- -------------------------------- -->
     <section>
-      <dl class="conTit">
-        <dt>RoadMap</dt>
-        <dd>현재 회사에서 진행 또는 심사 중인 프로젝트 📋</dd>
-        <!-- <dd style="margin:1rem auto">현재 회사에서 진행 또는 심사 중인 프로젝트 📋</dd> -->
-        <!-- <dd style="margin:-1rem auto">검토중인 프로젝트 ✋🏻</dd>
-        <dd style="margin:0.5rem auto">진행중인 프로젝트 🔨 </dd>
-        <dd style="margin:-1rem auto">최종승인대기 프로젝트 🧾</dd> -->
-      </dl>
-         
-                
-      <div>
-        <h3 class="subTit smallMG"></h3>
-          <div class="roadmap-schedule" onclick="location.href='roadmap.html';">전체일정</div>
-          <div class="roadmap-calendar" onclick="location.href='calendar.html';">스케줄러</div>
-          
-          <select class="roadmap-company">
-            <option>카카오</option>
-            <option>우아한형제들</option>
-            <option>라인</option>
-          </select>
-          <select class="roadmap-depart">
-            <option>디자인</option>
-            <option>개발</option>
-            <option>경영</option>
-            <option>인사</option>
-            <option>마케팅</option>
-            <select></select>
-          </select>
-          <form class="search-form">
-            <input type="search" class="search-form-text" > 
-            <input type="submit" value="검색🔍" class="search-form-submit">
-          </form>
-          </div>
-
-
-      </div>
-      
-  
-      <div class="roadmap-container">
-        <div class="roadmap-schedule-info">
-          <h2 class="roadmap-state">✋🏻검토중인 프로젝트</h2>
-          <div class="cate-sect cate-state">
-            <div class="cate-sect-header">
-              <div class="cate-name">라인<a href="#" class="roadmap-popup">  +</a></div>
-              <h2 class="cate-sect-title">AI/인공지능 프로젝트.</h2>
+        <dl class="conTit">
+            <dt>ROADMAP</dt>
+            <dd>현재 회사에서 진행 또는 심사 중인 프로젝트를 확인해보세요.</dd>
+        </dl>
+        <div class="roadMapTab">
+            <ul class="roadMapNav">
+                <li class="active"><a href="#">전체일정</a></li>
+                <li><a href="#">스케줄러</a></li>
+            </ul>
+            <div class="roadMapCont">
+                <div class="progress" style="display: block;">
+                    <div class="roadMapSearch">
+                        <select>
+                            <option>카카오</option>
+                            <option>우아한형제들</option>
+                            <option>라인</option>
+                        </select>
+                        <select>
+                            <option>디자인</option>
+                            <option>개발</option>
+                            <option>경영</option>
+                            <option>인사</option>
+                            <option>마케팅</option>
+                        </select>
+                        <input type="text"> 
+                        <input type="submit" value="검색">
+                    </div>
+                    <div class="roadMapState smallMG">
+                        <dl class="stateForm">
+                            <dt class="waiting">검토 중</dt>
+                            <dd>
+                                <a href="#">
+                                    <dl class="projectThumb">
+                                        <dt>LINE</dt>
+                                        <dd>AI/인공지능 프로젝트</dd>
+                                        <dd>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa quaerat quisquam magni aperiam minima quam, dicta sequi. Vel, consectetur totam.</dd>
+                                    </dl>
+                                </a>
+                            </dd>
+                            <dd>
+                                <a href="#">
+                                    <dl class="projectThumb">
+                                        <dt>LINE</dt>
+                                        <dd>AI/인공지능 프로젝트</dd>
+                                        <dd>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa quaerat quisquam magni aperiam minima quam, dicta sequi. Vel, consectetur totam.</dd>
+                                    </dl>
+                                </a>
+                            </dd>
+                            <dd>
+                                <a href="#">
+                                    <dl class="projectThumb">
+                                        <dt>LINE</dt>
+                                        <dd>AI/인공지능 프로젝트</dd>
+                                        <dd>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa quaerat quisquam magni aperiam minima quam, dicta sequi. Vel, consectetur totam.</dd>
+                                    </dl>
+                                </a>
+                            </dd>
+                        </dl>
+                        <dl class="stateForm">
+                            <dt class="starting">진행 중</dt>
+                            <dd>
+                                <a href="#">
+                                    <dl class="projectThumb">
+                                        <dt>LINE</dt>
+                                        <dd>AI/인공지능 프로젝트</dd>
+                                        <dd>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa quaerat quisquam magni aperiam minima quam, dicta sequi. Vel, consectetur totam.</dd>
+                                    </dl>
+                                </a>
+                            </dd>
+                            <dd>
+                                <a href="#">
+                                    <dl class="projectThumb">
+                                        <dt>LINE</dt>
+                                        <dd>AI/인공지능 프로젝트</dd>
+                                        <dd>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa quaerat quisquam magni aperiam minima quam, dicta sequi. Vel, consectetur totam.</dd>
+                                    </dl>
+                                </a>
+                            </dd>
+                            <dd>
+                                <a href="#">
+                                    <dl class="projectThumb">
+                                        <dt>LINE</dt>
+                                        <dd>AI/인공지능 프로젝트</dd>
+                                        <dd>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa quaerat quisquam magni aperiam minima quam, dicta sequi. Vel, consectetur totam.</dd>
+                                    </dl>
+                                </a>
+                            </dd>
+                        </dl>
+                        <dl class="stateForm">
+                            <dt class="stopping">승인대기 중</dt>
+                            <dd>
+                                <a href="#">
+                                    <dl class="projectThumb">
+                                        <dt>LINE</dt>
+                                        <dd>AI/인공지능 프로젝트</dd>
+                                        <dd>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa quaerat quisquam magni aperiam minima quam, dicta sequi. Vel, consectetur totam.</dd>
+                                    </dl>
+                                </a>
+                            </dd>
+                            <dd>
+                                <a href="#">
+                                    <dl class="projectThumb">
+                                        <dt>LINE</dt>
+                                        <dd>AI/인공지능 프로젝트</dd>
+                                        <dd>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa quaerat quisquam magni aperiam minima quam, dicta sequi. Vel, consectetur totam.</dd>
+                                    </dl>
+                                </a>
+                            </dd>
+                            <dd>
+                                <a href="#">
+                                    <dl class="projectThumb">
+                                        <dt>LINE</dt>
+                                        <dd>AI/인공지능 프로젝트</dd>
+                                        <dd>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa quaerat quisquam magni aperiam minima quam, dicta sequi. Vel, consectetur totam.</dd>
+                                    </dl>
+                                </a>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+                <div>
+                    <table class="scriptCalendar smallMG">
+                        <caption>
+                            <a href="#" onClick="prevCalendar();" >
+                                <img src="img/prev.png" alt="">
+                            </a>
+                            <span id="calYear">YYYY</span>.
+                            <span id="calMonth">MM</span>
+                            <a href="#" onClick="nextCalendar();" >
+                                <img src="img/next.png" alt="">
+                            </a>
+                        </caption>
+                        <thead>
+                          <tr>
+                            <td>SUN</td>
+                            <td>MON</td>
+                            <td>TUE</td>
+                            <td>WED</td>
+                            <td>THU</td>
+                            <td>FRI</td>
+                            <td>SAT</td>
+                          </tr>
+                        </thead>
+                        <tbody></tbody>
+                      </table>
+                </div>
             </div>
-            <p class="cate-sect-cont">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa quaerat quisquam magni aperiam minima quam, dicta sequi. Vel, consectetur totam.</p>
-            
-          </div>
-
-          <div class="cate-sect cate-state">
-            <div class="cate-sect-header">
-              <div class="cate-name">라인<a href="#" class="roadmap-popup">  +</a></div>
-              <h2 class="cate-sect-title">AI/인공지능 프로젝트.</a></h2>
-            </div>
-            <p class="cate-sect-cont">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa quaerat quisquam magni aperiam minima quam, dicta sequi. Vel, consectetur totam.</p>
-          </div>
         </div>
-               
-        <div class="roadmap-schedule-info">
-          <h2 class="roadmap-state">🔨진행중인 프로젝트</h2>
-          <div class="cate-sect cate-state">
-            <div class="cate-sect-header">
-              <div class="cate-name">WithWork<a href="#" class="roadmap-popup">  +</a></div>
-              <h2 class="cate-sect-title">협업프로젝트</h2>
-            </div>
-            <p class="cate-sect-cont">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa quaerat quisquam magni aperiam minima quam, dicta sequi. Vel, consectetur totam.</p>
-          </div>
-
-          <div class="cate-sect cate-state">
-            <div class="cate-sect-header">
-              <div class="cate-name">WithWork<a href="#" class="roadmap-popup">  +</a></div>
-              <h2 class="cate-sect-title">협업프로젝트</h2>
-            </div>
-            <p class="cate-sect-cont">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa quaerat quisquam magni aperiam minima quam, dicta sequi. Vel, consectetur totam.</p>
-          </div>
-        </div>
-
-        <div class="roadmap-schedule-info">
-          <h2 class="roadmap-state">🧾최종승인대기 프로젝트</h2>     
-          <div class="cate-sect cate-state">
-            <div class="cate-sect-header">
-              <div class="cate-name">미라콤아이앤씨<a href="#" class="roadmap-popup">  +</a></div>
-              <h2 class="cate-sect-title">MES(공정관리프로젝트)</h2>
-            </div>
-            <p class="cate-sect-cont">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa quaerat quisquam magni aperiam minima quam, dicta sequi. Vel, consectetur totam.</p>
-          </div> 
-
-          <div class="cate-sect cate-state">
-            <div class="cate-sect-header">
-              <div class="cate-name">미라콤아이앤씨<a href="#" class="roadmap-popup">  +</a></div>
-              <h2 class="cate-sect-title">MES(공정관리프로젝트)</h2>
-            </div>
-            <p class="cate-sect-cont">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa quaerat quisquam magni aperiam minima quam, dicta sequi. Vel, consectetur totam.</p>
-          </div> 
-        </div>
-      </div>
-
     </section>
 
     <!-- ----------------------------------------------------- -->
