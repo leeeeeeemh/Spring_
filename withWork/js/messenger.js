@@ -19,6 +19,12 @@ $().ready(function(){
         $(".msgPopupAll > div").eq(idx).show();
     });
     
+    // 첫 팝업창에서 멤버 탭 default
+    $(".msgPopupC li").click(function(){
+        $(this).addClass("active").show();
+        $(".chatMenu1").show();
+    });
+    
     //프로필 창 열기
     $(".profileImg").click(function(){
         $(".chatProfile").show();

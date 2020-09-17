@@ -17,9 +17,27 @@
 
 .chatBox {
     overflow: auto;
-    height: 470px;
+    height: 490px;
     margin: 10px 0;
     border-bottom: 1px solid #ddd;
+}
+
+.chatBox p {
+    position: relative;
+    height: 50px;
+    background: url(../img/bar.png) repeat-x center;
+}
+
+.chatBox span {
+    font-size: 13px;
+    line-height: 50px;
+    font-weight: 400;
+    color: dimgray;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 10px;
+    background-color: white;
 }
 
 .chatBox dl {
@@ -48,11 +66,37 @@
     margin-top: 3px;
 }
 
+.chatBox ul {
+    padding-left: 65px;
+    font-size: 0;
+}
+
+.chatBoxCont2 {
+    display: inline-block;
+    background-color: #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    max-width: 80%;
+    margin-bottom: 11px;
+}
+
+.chatTime2 {
+    display: inline-block;
+    font-size: 13px;
+    width: 16%;
+    padding-left: 5px;
+    vertical-align: middle;
+}
+
 .chatTime {
     font-size: 13px;
     width: 16%;
     padding-left: 5px;
     vertical-align: middle;
+}
+
+.chatFoot {
+    height: 70px;
 }
 
 .fileUpload {
@@ -76,7 +120,10 @@
 
 .chatSendBox textarea {
     width: 90%;
-    padding: 10px 0;
+    padding: 10px;
+    box-sizing: border-box;
+    resize: none;
+    outline: 0;
 }
 
 .chatSendBox input {
@@ -101,192 +148,6 @@
     color: white;
 }
 
-/********************** 메신저 창 (팝업) *************************/
-
-.popupM {
-    position: fixed;
-    width: 30%;
-    height: 100%;
-    right: -100%;
-    z-index: 100;
-    background: white;
-    border: 1px solid #ddd;
-    transition: right .5s;
-}
-
-.popupM.show{
-    right: 5%;
-}
-
-.popupM > dl dt {
-    padding: 20px 25px;
-    background: #272a44;
-    font-weight: 400;
-    color: white;
-    font-size: 18px;
-    text-align: center;
-}
-
-.popupM > dl dt a {
-    color: white;
-    float: right;
-}
-
-.searchMember {
-    width: 94%;
-    margin: 20px 0;
-    margin-left: 12px;
-    border: 1px solid #ddd;
-}
-
-.msgPopupC {
-    font-size: 0;
-}
-
-.msgPopupC li {
-    display: inline-block;
-    width: 50%;
-    text-align: center;
-    border: 1px solid #ddd;
-    box-sizing: border-box;
-}
-
-.msgPopupC a {
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    padding: 20px 0;
-    font-size: 17px;
-    font-weight: 500;
-}
-
-.msgPopupAll {
-    border-top: 1px solid #ddd;
-    padding-top: 20px;
-    padding-left: 20px;
-}
-
-.msgPopupAll dl {
-    background: url(../img/profile.png) no-repeat left center;
-    background-size: 60px;
-    padding-left: 70px;
-    padding-right: 20px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-}
-
-.msgPopupA {
-    overflow: auto;
-    height: 542px;
-}
-
-.msgPopupB {
-    display: none;
-    overflow: auto;
-    height: 542px;
-}
-
-.memPopup {
-    font-weight: 500;
-    padding-bottom: 7px;
-    width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-.onlineId {
-    font-size: 13px;
-    color: #999;
-    font-weight: 400;
-}
-
-/********************** 프로필 창 (팝업) *************************/
-
-.popupP {
-    display: none;
-    position: fixed;
-    width: 25%;
-    min-height: 300px;
-    max-height: 700px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 100;
-    background: white;
-    border: 1px solid #272a44;
-}
-
-.popupP dt {
-    padding: 20px 25px;
-    background: #272a44;
-    font-weight: 400;
-    color: white;
-    font-size: 18px;
-    text-align: center;
-}
-
-.popupP dt a {
-    color: white;
-    float: right;
-}
-
-.popupP dd {
-    padding: 20px 25px;
-}
-
-.popupP ul {
-    text-align: center;
-}
-
-.popupP li {
-    padding-bottom: 15px;
-}
-
-.popupP li:nth-child(1) {
-    padding-top: 10px;
-}
-
-.popupP li:nth-child(2) {
-    font-size: 18px;
-    font-weight: 600;
-}
-
-.popupP li:nth-child(3) {
-    font-size: 14px;
-    color: #999;
-    font-weight: 400;
-}
-
-.popupP .btnBox {
-    display: inline-block;
-    text-align: center;
-    font-size: 0;
-    margin-top: 10px;
-    width: 100%;
-}
-
-.popupP .btnBox a {
-    display: inline-block;
-    width: 20%;
-    height: 44px;
-    line-height: 44px;
-    color: white;
-    background: #272a44;
-    font-size: 17px;
-    text-align: center;
-    border-radius: 44px;
-}
-
-.popupP .btnBox.set2 a{
-    width: 33%;
-    margin: 4px;
-}
-
-.popupP .btnBox a:hover {
-    background: #ff8400;
-    color: white;
-}
 
 
 

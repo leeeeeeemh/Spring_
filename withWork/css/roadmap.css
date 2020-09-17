@@ -1,3 +1,4 @@
+/* --------------------roadmap/schedule header-------------------- */
 section .roadmap-schedule {
   position: relative;
   display: inline-block;
@@ -7,11 +8,6 @@ section .roadmap-schedule {
   text-align: center;
   justify-content: center;
   line-height: 50px;
-}
-
-section .roadmap-schedule:hover {
-  background: #272a44;
-  color: #fff;
 }
 
 section .roadmap-calendar {
@@ -24,18 +20,49 @@ section .roadmap-calendar {
   text-align: center;
   justify-content: center;
   line-height: 50px;
-  margin-left: -5px auto;
+  margin-left: -4px;
+}
+
+section .roadmap-schedule:hover {
+  transition: 0.5s;
+  background: #272a44;
+  color: white;
+  font-weight: bold;
 }
 
 section .roadmap-calendar:hover {
   background: #272a44;
-  z-index: 0;
-  color: #fff;
+  color: white;
+  transition: 0.5s;
+  font-weight: bold;
 }
 
-.search-form {
-  display: flex;
-  height: 40px;
+.roadmap-company {
+  position: relative;
+  right: -735px;
+  border-radius: 0.3em;
+  border: 1px solid black;
+}
+
+.roadmap-depart {
+  position: relative;
+  right: -735px;
+  border: 1px solid black;
+  border-radius: 0.3em;
+}
+
+.search-form .search-form-text {
+  position: relative;
+  right: -735px;
+  border: 1px solid black;
+  top: 18px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  -ms-text-overflow: ellipsis;
+  width: 60px;
+  border-radius: 0.3em;
 }
 
 .search-form {
@@ -45,51 +72,131 @@ section .roadmap-calendar:hover {
   height: 100px;
 }
 
-.search-form input[type="search"] {
-  /* position: relative;
-  min-width: 0;
-  margin-right: 10px;
-  border: 0;
+.search-form .start-date {
+  position: relative;
+  border: 1px solid black;
   border-radius: 0.3em;
-  font-size: 1rem;
-  width: 100px;
-  border: 1px solid black; */
+  right: -750px;
+  top: 45px;
+}
+.search-form .end-date {
+  border: 1px solid black;
+  border-radius: 0.3em;
+  position: relative;
+  right: -810px;
+  top: 20px;
 }
 
 .search-form input[type="submit"] {
+  position: relative;
   width: 6em;
   border: 0;
   border-radius: 0.3em;
   font-size: 0.5rem;
   background: #272a44;
   color: #fff;
-  text-align: center;
-  justify-content: center;
   line-height: 20px;
+  right: -798px;
+  top: -3px;
 }
-.roadmap-company {
-  width: 4em;
-  border: 0;
-  border-radius: 0.3em;
-  font-size: 1rem;
-  width: 80px;
 
+/* --------------- roadmap content--------------*/
+.roadmap-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, minmax(200px, auto));
+  gap: 20px;
+}
+.roadmap-container .roadmap-state {
+  margin-top: 0px;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.roadmap-container .roadmap-schedule-info .cate-sect {
   border: 1px solid black;
 }
 
-.roadmap-depart {
-  border: 1px solid black;
-  width: 4em;
-  border: 0;
-  border-radius: 0.3em;
-  font-size: 1rem;
+.cate-sect-cont {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  -ms-text-overflow: ellipsis;
+  width: 300px;
+}
+
+.cate-sect {
+  background: white;
+}
+.cate-name {
+  padding: 0.5rem;
+  font-weight: bold;
+  color: black;
+}
+.cate-state .cate-name {
+  background: 272a44;
+}
+.cate-state .cate-name:hover {
+  background: #272a44;
+  color: white;
+  transition: 0.5s;
+}
+
+.cate-sect-cont {
+  padding: 1rem;
+}
+.cate-sect-title {
+  padding: 1rem;
+}
+
+.sort-label {
+  padding: 1rem;
+  cursor: pointer;
+}
+:checked + .sort-label {
+  color: white;
+  background: black;
+}
+
+/* ---------------------calendar  main----------------------*/
+
+.scriptCalendar {
+  position: absolute;
   text-align: center;
-  justify-content: center;
-  line-height: 50px;
-  border: 1px solid black;
-  width: 80px;
+  margin-top: 20px;
 }
 
+.scriptCalendar > thead > tr > td {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 40px;
+}
+.scriptCalendar > thead > tr:first-child > td {
+  font-weight: bold;
+}
+.scriptCalendar > thead > tr:last-child > td {
+  background-color: #272a44;
+  color: #fff;
+}
+.scriptCalendar > tbody > tr > td {
+  display: inline-flex;
+  width: 100px;
+  height: 100px;
+}
+
+.CalendarInfo {
+  position: relative;
+  right: 1000px;
+  width: 500px;
+  height: 500px;
+  border: 1px solid black;
+}
+
+/* ---------------------------------------- modal ----------------------------------- */
 .modal {
   display: flex;
   justify-content: center;
@@ -108,15 +215,7 @@ section .roadmap-calendar:hover {
   background: white;
 }
 
-/* --------------- roadmap-schedule-info --------------*/
-section .roadmap-schedule-info {
-  display: grid;
-
-  grid-template-columns: 50px;
-  grid-template-rows: 1fr 2fr;
-  border: 1px solid black;
-}
-/* -----modal---- */
+/* -----------------------------------modal------------------------------------------- */
 .modal {
   display: none;
   top: px;
@@ -139,7 +238,6 @@ label[for="modal-switch"] {
 }
 
 label[for="modal-switch"]:before {
-  content: "✋🏻";
   font-size: 2rem;
   cursor: pointer;
 }
