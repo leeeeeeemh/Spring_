@@ -3,9 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-  <typeAliases>
-  	<typeAlias alias="notice" type="com.spring.withwork.vo"/>
-  </typeAliases>
+<!--   <typeAliases>
+  	<typeAlias alias="notice" type="com.spring.withwork.NoticeVO"/>
+  </typeAliases> -->
 <!--   <typeAliases>
   	<typeAlias alias="board" type="com.spring.biz.board.BoardVO"/>
   </typeAliases> -->

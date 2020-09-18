@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MainMapper">
+
+	<insert id="insert" parameterType="com.spring.withwork.vo.GuestVO">
+		INSERT INTO GUEST(G_NUM, ID, PASSWORD, G_NAME, ADDRESS, EMAIL, PHONE, REGDATE)
+		VALUES(GUEST_SEQ.NEXTVAL, #{id}, #{password}, #{g_name}, #{address}, #{email}, #{phone}, sysdate)
+	</insert>
+	
+	<select id="checkId" parameterType="String" resultType="int">
+		select count(id) from guest where id = #{id}
+	</select>
+	
+	<select id="findId" parameterType="Map" resultType="String">
+		select id from guest where email = #{email} and g_name = #{name}
+	</select>
+	
+	<select id="checkIdPwd" parameterType="Map" resultType="int">
+		select count(*) from guest where id = #{id} and email = #{email}
+	</select>
+	
+	<update id="updatePwd" parameterType="String">
+		
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
