@@ -73,6 +73,9 @@
             </dl>
         </div>
         <div class="chatFoot">
+        
+        	<form action="insertNotice.do" method="post">
+        	
             <ul class="fileUpload">
                 <li>
                     <a href="#">
@@ -80,10 +83,13 @@
                     </a>
                 </li>
                 <li class="chatSendBox">
-                    <textarea rows="5px" placeholder="메세지를 입력하세요."></textarea>
-                    <input type="button" value="전송" class="sendBtn">
+                    <textarea rows="5px" placeholder="메세지를 입력하세요." name="message"></textarea>
+                    <input type="submit" value="전송" class="sendBtn">
                 </li>
             </ul>
+            
+            </form>
+            
         </div>
     </section>
     <%@ include file="include/footer.jsp" %>

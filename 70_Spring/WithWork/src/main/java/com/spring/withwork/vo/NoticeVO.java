@@ -1,21 +1,33 @@
 package com.spring.withwork.vo;
 
+import java.sql.Blob;
+import java.sql.Date;
+
 public class NoticeVO {
 	private int m_num;
 	private int room_id;
-	private String regdate;
+	private Date time;
+	private String message;
+	private Blob attfile;
 	private String content;
-	private String attfile;
+	private String g_name;
+	private String role;
 	
-	public NoticeVO() {}
+	public NoticeVO() {
+		System.out.println(">> NoticeVO() 객체 생성");
+	}
 
-	public NoticeVO(int m_num, int room_id, String regdate, String content, String attfile) {
+	public NoticeVO(int m_num, int room_id, Date time, String message, Blob attfile, String content, String g_name,
+			String role) {
 		super();
 		this.m_num = m_num;
 		this.room_id = room_id;
-		this.regdate = regdate;
-		this.content = content;
+		this.time = time;
+		this.message = message;
 		this.attfile = attfile;
+		this.content = content;
+		this.g_name = g_name;
+		this.role = role;
 	}
 
 	public int getM_num() {
@@ -34,12 +46,28 @@ public class NoticeVO {
 		this.room_id = room_id;
 	}
 
-	public String getRegdate() {
-		return regdate;
+	public Date getTime() {
+		return time;
 	}
 
-	public void setRegdate(String regdate) {
-		this.regdate = regdate;
+	public void setTime(Date time) {
+		this.time = time;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public Blob getAttfile() {
+		return attfile;
+	}
+
+	public void setAttfile(Blob attfile) {
+		this.attfile = attfile;
 	}
 
 	public String getContent() {
@@ -50,18 +78,28 @@ public class NoticeVO {
 		this.content = content;
 	}
 
-	public String getAttfile() {
-		return attfile;
+	public String getG_name() {
+		return g_name;
 	}
 
-	public void setAttfile(String attfile) {
-		this.attfile = attfile;
+	public void setG_name(String g_name) {
+		this.g_name = g_name;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	@Override
 	public String toString() {
-		return "NoticeVO [m_num=" + m_num + ", room_id=" + room_id + ", regdate=" + regdate + ", content=" + content
-				+ ", attfile=" + attfile + "]";
+		return "NoticeVO [m_num=" + m_num + ", room_id=" + room_id + ", time=" + time + ", message=" + message
+				+ ", attfile=" + attfile + ", content=" + content + ", g_name=" + g_name + ", role=" + role + "]";
 	}
+
+	
 	
 }
