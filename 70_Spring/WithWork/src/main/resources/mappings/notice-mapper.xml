@@ -5,12 +5,12 @@
 <mapper namespace="NoticeDAO">
 
 	<insert id="insertNotice" parameterType="notice">
-		INSERT INTO CHATMESSAGE (M_NUM, ROOM_ID, TIME, MESSAGE, ATTFILE, CONTENT, G_NAME, ROLE)
-		VALUES (1, 1, sysdate, #{message}, 첨부파일, 대화명, 이충진, 인턴)
+		INSERT INTO CHATMESSAGE (M_NUM, ROOM_ID, TIME, MESSAGE, ATTFILE, CONTENT, G_NUM, ROLE, CM_NUM)
+		VALUES (1, 1, sysdate, #{message}, '첨부파일', '대화명', 1, '사원', CM_SEQ.NEXTVAL)
 	</insert>
 	
-	<select id="getNotice" parameterType="notice" resultType="notice">
-		SELECT * FROM CHATMESSAGE WHERE ROOM_ID = 1
+	<select id="getNoticeList" parameterType="notice" resultType="notice">
+		SELECT * FROM CHATMESSAGE WHERE ROOM_ID = 1 ORDER BY CM_NUM
 	</select>
 </mapper>
 

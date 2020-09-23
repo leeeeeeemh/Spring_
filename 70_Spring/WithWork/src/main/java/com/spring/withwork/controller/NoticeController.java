@@ -1,9 +1,12 @@
 package com.spring.withwork.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,24 +24,24 @@ public class NoticeController {
 		System.out.println("---> NoticeController() 객체생성");
 	}
 	
-	@RequestMapping("/getNotice.do")
-	public String getNotice(NoticeVO vo, Model model) {
-		System.out.println(">>> 글 상세 - String getNotice()");
+	@ResponseBody
+	@RequestMapping("/getNoticeList.do")
+	public List<NoticeVO> getNoticeList(NoticeVO vo, Model model) {
+		System.out.println(">>> 글 전체 목록 - String getNoticeList()");
 		
-		NoticeVO notice = noticeService.getNotice(vo);
+		List<NoticeVO> notice = noticeService.getNoticeList(vo);
 		model.addAttribute("notice", notice);
-		System.out.println("getNotice() notice : " + notice);
+		System.out.println("getNoticeList() notice : " + notice);
 		
-		return "notice.jsp";
+		return notice;
 	}
 	
 	@RequestMapping("/insertNotice.do")
 	public String insertNotice(NoticeVO vo) {
 		System.out.println(">>> 글 입력 - insertNotice()");
 		System.out.println("> insertNotice() vo : " + vo);
-		
 		noticeService.insertNotice(vo);
-		return "getNotice.do";
+		return "notice.jsp";
 	}
 	
 }

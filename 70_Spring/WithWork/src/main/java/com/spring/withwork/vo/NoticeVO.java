@@ -1,24 +1,24 @@
 package com.spring.withwork.vo;
 
-import java.sql.Blob;
 import java.sql.Date;
 
 public class NoticeVO {
 	private int m_num;
 	private int room_id;
-	private Date time;
+	private String time;
 	private String message;
-	private Blob attfile;
+	private String attfile;
 	private String content;
-	private String g_name;
+	private int g_num;
 	private String role;
+	private int cm_num;
 	
 	public NoticeVO() {
 		System.out.println(">> NoticeVO() 객체 생성");
 	}
 
-	public NoticeVO(int m_num, int room_id, Date time, String message, Blob attfile, String content, String g_name,
-			String role) {
+	public NoticeVO(int m_num, int room_id, String time, String message, String attfile, String content, int g_num,
+			String role, int cm_num) {
 		super();
 		this.m_num = m_num;
 		this.room_id = room_id;
@@ -26,8 +26,9 @@ public class NoticeVO {
 		this.message = message;
 		this.attfile = attfile;
 		this.content = content;
-		this.g_name = g_name;
+		this.g_num = g_num;
 		this.role = role;
+		this.cm_num = cm_num;
 	}
 
 	public int getM_num() {
@@ -46,11 +47,11 @@ public class NoticeVO {
 		this.room_id = room_id;
 	}
 
-	public Date getTime() {
+	public String getTime() {
 		return time;
 	}
 
-	public void setTime(Date time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 
@@ -62,11 +63,11 @@ public class NoticeVO {
 		this.message = message;
 	}
 
-	public Blob getAttfile() {
+	public String getAttfile() {
 		return attfile;
 	}
 
-	public void setAttfile(Blob attfile) {
+	public void setAttfile(String attfile) {
 		this.attfile = attfile;
 	}
 
@@ -78,12 +79,12 @@ public class NoticeVO {
 		this.content = content;
 	}
 
-	public String getG_name() {
-		return g_name;
+	public int getG_num() {
+		return g_num;
 	}
 
-	public void setG_name(String g_name) {
-		this.g_name = g_name;
+	public void setG_num(int g_num) {
+		this.g_num = g_num;
 	}
 
 	public String getRole() {
@@ -94,12 +95,20 @@ public class NoticeVO {
 		this.role = role;
 	}
 
+	public int getCm_num() {
+		return cm_num;
+	}
+
+	public void setCm_num(int cm_num) {
+		this.cm_num = cm_num;
+	}
+
 	@Override
 	public String toString() {
 		return "NoticeVO [m_num=" + m_num + ", room_id=" + room_id + ", time=" + time + ", message=" + message
-				+ ", attfile=" + attfile + ", content=" + content + ", g_name=" + g_name + ", role=" + role + "]";
+				+ ", attfile=" + attfile + ", content=" + content + ", g_num=" + g_num + ", role=" + role
+				+ ", cm_num=" + cm_num + "]";
 	}
 
-	
 	
 }

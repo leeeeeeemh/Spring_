@@ -39,8 +39,8 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public List<NoticeVO> getNoticeList() {
-		return noticeDAO.getNoticeList();
+	public List<NoticeVO> getNoticeList(NoticeVO vo) {
+		return noticeDAO.getNoticeList(vo);
 	}
 
 }

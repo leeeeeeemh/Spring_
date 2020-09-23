@@ -38,10 +38,10 @@ public class NoticeDAO {
 		return mybatis.selectOne("NoticeDAO.getNotice", vo);
 	}
 	
-	public List<NoticeVO> getNoticeList() {
+	public List<NoticeVO> getNoticeList(NoticeVO vo) {
 		System.out.println("===> MyBatis로 getNoticeList() 실행");
 		
-		return null;
+		return mybatis.selectList("NoticeDAO.getNoticeList", vo);
 	}	
 	
 }

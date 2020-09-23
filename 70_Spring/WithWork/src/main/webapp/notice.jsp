@@ -1,10 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <%@ include file="include/head.jsp" %>
 </head>
+<script>
+	$(function(){
+		$(".sendBtn").click(function(){
+			getNoticeList();
+		});
+		setInterval("getNoticeList();", 100);
+	});
+	function getNoticeList() {
+		$.ajax("getNoticeList.do", {
+			type : "post",
+			dataType : "json",
+			success : function(data){
+				var dl = "";
+				$.each(data, function(){
+					dl += "<dl>";
+					dl += "<dt>" + this.g_num + " " + this.role + "</dt>";
+					dl += "<dd class='chatBoxCont1'>" + this.message + "</dd>";
+					dl += "<dd class='chatTime'>" + this.time + "</dd>";
+					dl += "</dl>";
+				})
+				
+				$(".chatBox").html(dl);
+			}
+		});
+	}
+</script>
+	<%-- <c:forEach var="chat" items="${notice }">
+	            <dl>
+	                <dt>${chat.g_num } ${chat.role }</dt>
+	                <dd class="chatBoxCont1">${chat.message }</dd>
+	                <dd class="chatTime">${chat.time }</dd>
+	            </dl>
+           </c:forEach> --%>
 <body>
 	<%@ include file="include/header.jsp" %>
     <section>
@@ -20,28 +54,34 @@
             <dd>오늘의 공지사항을 확인해보세요.</dd>
         </dl>
         <div class="chatBox">
-            <dl>
+            <!-- <dl>
                 <dt>권은영 팀장</dt>
                 <dd class="chatBoxCont1">여러분, 카트 덤비세요~</dd>
                 <dd class="chatTime">오후 11:57</dd>
-            </dl>
-            <dl>
-                <dt>최은서 부사장</dt>
-                <dd class="chatBoxCont1">아니 언니 !!! 코인이나 보내 빨리 ㅡㅡㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ</dd>
-                <dd class="chatTime">오후 11:59</dd>
-            </dl>
-            <ul>
+            </dl> -->
+            
+            <p>
+                <span>2020년 12월 8일 화요일</span>
+            </p>
+            
+            <%-- <c:forEach var="chat" items="${notice }">
+	            <dl>
+	                <dt>${chat.g_num } ${chat.role }</dt>
+	                <dd class="chatBoxCont1">${chat.message }</dd>
+	                <dd class="chatTime">${chat.time }</dd>
+	            </dl>
+           </c:forEach> --%>
+           
+            <!-- <ul>
                 <li class="chatBoxCont2">ㄴㅇㅁ라ㅕㅈ마ㅓㅜ</li>
                 <li class="chatTime2">오후 11:59</li>
             </ul>
             <ul>
                 <li class="chatBoxCont2">ㄴㅁ려ㅑㅗ뮈ㅈ</li>
                 <li class="chatTime2">오후 11:59</li>
-            </ul>
-            <p>
-                <span>2020년 12월 8일 화요일</span>
-            </p>            
-            <dl>
+            </ul> -->
+            
+            <!-- <dl>
                 <dt>박실 대리</dt>
                 <dd class="chatBoxCont1">ㅋㅋㅋ</dd>
                 <dd class="chatTime">오전 09:37</dd>
@@ -70,7 +110,7 @@
                 <dt>이민형 사원</dt>
                 <dd class="chatBoxCont1">...네</dd>
                 <dd class="chatTime">오전 10:26</dd>
-            </dl>
+            </dl> -->
         </div>
         <div class="chatFoot">
         
