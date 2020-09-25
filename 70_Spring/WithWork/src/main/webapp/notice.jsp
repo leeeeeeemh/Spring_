@@ -9,10 +9,30 @@
 <script>
 	$(function(){
 		$(".sendBtn").click(function(){
+			insertNotice();
 			getNoticeList();
 		});
-		setInterval("getNoticeList();", 100);
+		
+		setInterval(getNoticeList, 100); // 0.1초 간격
+		
 	});
+	function insertNotice() {
+		
+		var message = $(".chatSendBox textarea").val();
+		
+		$.ajax("insertNotice.do", {
+			type : "post",
+			dataType : "json",
+			data : "message=" + message,
+			success : function(data) {
+				
+				console.log("data : " + data);
+			},
+			error : function(){
+				
+			}
+		});
+	}
 	function getNoticeList() {
 		$.ajax("getNoticeList.do", {
 			type : "post",
@@ -28,6 +48,9 @@
 				})
 				
 				$(".chatBox").html(dl);
+			},
+			error : function(){
+
 			}
 		});
 	}
@@ -124,7 +147,7 @@
                 </li>
                 <li class="chatSendBox">
                     <textarea rows="5px" placeholder="메세지를 입력하세요." name="message"></textarea>
-                    <input type="submit" value="전송" class="sendBtn">
+                    <input type="button" value="전송" class="sendBtn">
                 </li>
             </ul>
             

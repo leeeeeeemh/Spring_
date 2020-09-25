@@ -216,32 +216,32 @@
                 </a>
                 <a href="#" class="profileImg">
                     <dl>
-                        <dt class="memPopup">유영준 인턴</dt>
+                        <dt class="memPopup">유영준1 인턴</dt>
                         <dd class="onlineId">소곤 소곤..</dd>
                     </dl>
                 </a>
                 <a href="#" class="profileImg">
                     <dl>
-                        <dt class="memPopup">유영준 인턴</dt>
+                        <dt class="memPopup">유영준2 인턴</dt>
                         <dd class="onlineId">소곤 소곤..</dd>
                     </dl>
                 </a>
                 <a href="#" class="profileImg">
                     <dl>
-                        <dt class="memPopup">유영준 인턴</dt>
+                        <dt class="memPopup">유영준3 인턴</dt>
                         <dd class="onlineId">소곤 소곤..</dd>
                     </dl>
                 </a>
                 <a href="#" class="profileImg">
                     <dl>
-                        <dt class="memPopup">유영준 인턴</dt>
-                        <dd class="onlineId">소곤 소곤..</dd>
+                        <dt class="memPopup">원블리 인턴</dt>
+                        <dd class="onlineId">여자 이름같지만 남자입니다 ~</dd>
                     </dl>
                 </a>
                 <a href="#" class="profileImg">
                     <dl>
                         <dt class="memPopup">유영준 인턴</dt>
-                        <dd class="onlineId">소곤 소곤..</dd>
+                        <dd class="onlineId">설문조사..</dd>
                     </dl>
                 </a>
             </div>

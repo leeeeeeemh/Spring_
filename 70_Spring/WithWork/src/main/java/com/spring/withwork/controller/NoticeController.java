@@ -31,17 +31,23 @@ public class NoticeController {
 		
 		List<NoticeVO> notice = noticeService.getNoticeList(vo);
 		model.addAttribute("notice", notice);
+		
 		System.out.println("getNoticeList() notice : " + notice);
 		
 		return notice;
 	}
 	
+	@ResponseBody
 	@RequestMapping("/insertNotice.do")
-	public String insertNotice(NoticeVO vo) {
+	public int insertNotice(NoticeVO vo) {
 		System.out.println(">>> 글 입력 - insertNotice()");
 		System.out.println("> insertNotice() vo : " + vo);
-		noticeService.insertNotice(vo);
-		return "notice.jsp";
+		
+		int notice = noticeService.insertNotice(vo);
+		
+		System.out.println("insertNotice() notice : " + notice);
+		
+		return notice;
 	}
 	
 }

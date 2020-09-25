@@ -18,9 +18,9 @@ public class NoticeDAO {
 		System.out.println(">> NoticeDAO 객체생성");
 	}
 	
-	public void insertNotice(NoticeVO vo) {
+	public int insertNotice(NoticeVO vo) {
 		System.out.println("---> Mybatis로 insertNotice() 실행");
-		mybatis.insert("NoticeDAO.insertNotice", vo);
+		return mybatis.insert("NoticeDAO.insertNotice", vo);
 	}
 
 	public void updateNotice(NoticeVO vo) {
