@@ -178,7 +178,7 @@
         </div>
         <div class="msgPopupAll">
             <div class="msgPopupA">
-                <a href="#" class="profileImg">
+                <!-- <a href="#" class="profileImg">
                     <dl>
                         <dt class="memPopup">권은영 팀장</dt>
                         <dd class="onlineId">카트 들어오세요</dd>
@@ -243,7 +243,7 @@
                         <dt class="memPopup">유영준 인턴</dt>
                         <dd class="onlineId">설문조사..</dd>
                     </dl>
-                </a>
+                </a> -->
             </div>
             <div class="msgPopupB">
                 <a href="#" class="profileImg">
@@ -254,8 +254,8 @@
                 </a>
                 <a href="#" class="profileImg">
                     <dl>
-                        <dt class="memPopup">이충진 상무, 박실 대리</dt>
-                        <dd class="onlineId">의왕 단톡방입니다.</dd>
+                        <dt class="memPopup">이충진 상무, 박실 대리, 곽은진 과장</dt>
+                        <dd class="onlineId">의왕 단톡방입니다.(+산본)</dd>
                     </dl>
                 </a>
                 <a href="#" class="profileImg">
@@ -274,17 +274,23 @@
                 <a href="#" class="popupOK1">X</a>
             </dt>
             <dd>
-                <ul>
-                    <li>
+                <ul class="msgPopupD">
+                    <!-- <li>
                         <img src="img/profile.png" alt="" width="110px">
                     </li>
                     <li>권은영 팀장</li>
-                    <li>카트 들어오세요</li>
+                    <li>카트 들어오세요</li> -->
                 </ul>
+                
+                <form action="insertMessenger.do" method="post">
+                
                 <div class="btnBox set2">
-                    <a href="#">1:1 채팅</a>
-                    <a href="#">채팅방 초대</a>
+                    <a href="#" class="set11">1:1 채팅</a>
+                    <a href="#" class="set1n">채팅방 초대</a>
                 </div>
+                
+                </form>
+                
             </dd>
         </dl>
     </div>

@@ -4,14 +4,27 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="NoticeDAO">
 
+	<!-- 메세지 입력 -->
 	<insert id="insertNotice" parameterType="notice">
 		INSERT INTO CHATMESSAGE (M_NUM, ROOM_ID, TIME, MESSAGE, ATTFILE, CONTENT, G_NUM, ROLE, CM_NUM)
 		VALUES (1, 1, sysdate, #{message}, '첨부파일', '대화명', 1, '사원', CM_SEQ.NEXTVAL)
 	</insert>
 	
+	<!-- 대화명 수정 -->
+	<update id="updateNotice" parameterType="notice">
+		UPDATE CHATMESSAGE SET CONTENT = '자리비움' WHERE G_NUM = 1
+	</update>
+
+	<!-- 메세지 말풍선 -->	
 	<select id="getNoticeList" parameterType="notice" resultType="notice">
 		SELECT * FROM CHATMESSAGE WHERE ROOM_ID = 1 ORDER BY CM_NUM
 	</select>
+	
+	<!-- 채팅방 생성 -->
+	<insert id="insertMessenger" parameterType="notice">
+		INSERT INTO CHATROOM VALUES (ROOM_SEQ.NEXTVAL)
+	</insert>
+	
 </mapper>
 
 

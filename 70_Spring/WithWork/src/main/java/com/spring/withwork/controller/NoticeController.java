@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.withwork.service.NoticeService;
+import com.spring.withwork.vo.MessengerVO;
 import com.spring.withwork.vo.NoticeVO;
 
 @Controller
@@ -22,6 +23,32 @@ public class NoticeController {
 	
 	public NoticeController() {
 		System.out.println("---> NoticeController() 객체생성");
+	}
+	
+	@ResponseBody
+	@RequestMapping("/insertNotice.do")
+	public int insertNotice(NoticeVO vo) {
+		System.out.println(">>> 메세지 입력 - insertNotice()");
+		System.out.println("> insertNotice() vo : " + vo);
+		
+		int notice = noticeService.insertNotice(vo);
+		
+		System.out.println("insertNotice() notice : " + notice);
+		
+		return notice;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/updateNotice.do")
+	public int updateNotice(NoticeVO vo) {
+		System.out.println(">>> 대화명 수정 - updateNotice()");
+		System.out.println("> updateNotice() vo : " + vo);
+		
+		int notice = noticeService.updateNotice(vo);
+		
+		System.out.println("updateNotice() notice : " + notice);
+		
+		return notice;
 	}
 	
 	@ResponseBody
@@ -37,17 +64,15 @@ public class NoticeController {
 		return notice;
 	}
 	
-	@ResponseBody
-	@RequestMapping("/insertNotice.do")
-	public int insertNotice(NoticeVO vo) {
-		System.out.println(">>> 글 입력 - insertNotice()");
-		System.out.println("> insertNotice() vo : " + vo);
+	@RequestMapping("/insertMessenger.do")
+	public String insertMessenger(MessengerVO vo) {
+		System.out.println(">>> 채팅방 생성 - insertMessenger()");
+		System.out.println("> insertMessenger() vo : " + vo);
 		
-		int notice = noticeService.insertNotice(vo);
+		noticeService.insertMessenger(vo);
 		
-		System.out.println("insertNotice() notice : " + notice);
-		
-		return notice;
+		return "messenger.jsp";
 	}
+	
 	
 }

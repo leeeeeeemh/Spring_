@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.spring.withwork.vo.MessengerVO;
 import com.spring.withwork.vo.NoticeVO;
 
 @Repository("NoticeDAO")
@@ -23,9 +24,9 @@ public class NoticeDAO {
 		return mybatis.insert("NoticeDAO.insertNotice", vo);
 	}
 
-	public void updateNotice(NoticeVO vo) {
+	public int updateNotice(NoticeVO vo) {
 		System.out.println("---> Mybatis로 updateNotice() 실행");
-		mybatis.update("NoticeDAO.updateNotice", vo);
+		return mybatis.update("NoticeDAO.updateNotice", vo);
 	}
 	
 	public void deleteNotice(NoticeVO vo) {
@@ -42,6 +43,11 @@ public class NoticeDAO {
 		System.out.println("===> MyBatis로 getNoticeList() 실행");
 		
 		return mybatis.selectList("NoticeDAO.getNoticeList", vo);
-	}	
+	}
+	
+	public void insertMessenger(MessengerVO vo) {
+		System.out.println("---> Mybatis로 insertMessenger() 실행");
+		mybatis.insert("NoticeDAO.insertMessenger", vo);
+	}
 	
 }

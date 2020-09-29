@@ -15,7 +15,15 @@
 		
 		setInterval(getNoticeList, 100); // 0.1초 간격
 		
+		$(".chatBtn").click(function(){
+			getNoticeList2();
+		});
+		
+		$(".profileImg").click(function(){
+			getNoticeList3();
+		});
 	});
+	
 	function insertNotice() {
 		
 		var message = $(".chatSendBox textarea").val();
@@ -33,6 +41,7 @@
 			}
 		});
 	}
+	
 	function getNoticeList() {
 		$.ajax("getNoticeList.do", {
 			type : "post",
@@ -52,6 +61,53 @@
 			error : function(){
 
 			}
+		});
+	}
+	
+	function getNoticeList2() {
+		$.ajax("getNoticeList.do", {
+			type : "post",
+			dataType : "json",
+			success : function(data){
+				var a = "";
+				$.each(data, function(){
+					a += "<a href='#' class='profileImg'>";
+					a += "<dl>";
+					a += "<dt class='memPopup'>" + this.g_num + " " + this.role + "</dt>";
+					a += "<dd class='onlineId'>" + this.content + "</dd>";
+					a += "</dl>";
+					a += "</a>";
+				})
+				
+				$(".msgPopupA").html(a);
+			},
+			error : function(){
+				
+			}		
+		});
+	}
+	
+	function getNoticeList3() {
+		$.ajax("getNoticeList.do", {
+			type : "post",
+			dataType : "json",
+			success : function(data){
+				var li = "";
+				/* $.each(data, function(){ */
+					li += "<li>";
+					li += "<img src='img/profile.png' alt='' width='110px'>";
+					li += "</li>";
+					/* li += "<li>" + this.g_num + " " + this.role + "</li>";
+					li += "<li>" + this.content + "</li>"; */
+					li += "<li>" + "이민형 사원" + "</li>";
+					li += "<li>" + "제발 좀;;;;" + "</li>";
+				/* }) */
+					
+				$(".msgPopupD").html(li);
+			},
+			error : function(){
+				
+			}		
 		});
 	}
 </script>

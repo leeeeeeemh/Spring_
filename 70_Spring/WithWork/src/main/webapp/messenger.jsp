@@ -5,6 +5,55 @@
 <head>
     <%@ include file="include/head.jsp" %>
 </head>
+<script>
+	$(function(){
+		$(".sendBtn").click(function(){
+			insertNotice();
+			getNoticeList();
+		});
+		
+		setInterval(getNoticeList, 100); // 0.1초 간격
+		
+	});
+	function insertNotice() {
+		
+		var message = $(".chatSendBox textarea").val();
+		
+		$.ajax("insertNotice.do", {
+			type : "post",
+			dataType : "json",
+			data : "message=" + message,
+			success : function(data) {
+				
+				console.log("data : " + data);
+			},
+			error : function(){
+				
+			}
+		});
+	}
+	function getNoticeList() {
+		$.ajax("getNoticeList.do", {
+			type : "post",
+			dataType : "json",
+			success : function(data){
+				var dl = "";
+				$.each(data, function(){
+					dl += "<dl>";
+					dl += "<dt>" + this.g_num + " " + this.role + "</dt>";
+					dl += "<dd class='chatBoxCont1'>" + this.message + "</dd>";
+					dl += "<dd class='chatTime'>" + this.time + "</dd>";
+					dl += "</dl>";
+				})
+				
+				$(".chatBox").html(dl);
+			},
+			error : function(){
+
+			}
+		});
+	}
+</script>
 <body>
     <%@ include file="include/header.jsp" %>
     <section>
@@ -20,7 +69,7 @@
             <dd>멤버들과 대화의 장을 펼쳐보아요.</dd>
         </dl>
         <div class="chatBox">
-            <dl>
+            <!-- <dl>
                 <dt>권은영 팀장</dt>
                 <dd class="chatBoxCont1">여러분, 카트 덤비세요~</dd>
                 <dd class="chatTime">오후 11:57</dd>
@@ -37,11 +86,11 @@
             <ul>
                 <li class="chatBoxCont2">ㄴㅁ려ㅑㅗ뮈ㅈ</li>
                 <li class="chatTime2">오후 11:59</li>
-            </ul>
+            </ul> -->
             <p>
                 <span>2020년 12월 8일 화요일</span>
             </p>            
-            <dl>
+            <!-- <dl>
                 <dt>박실 대리</dt>
                 <dd class="chatBoxCont1">ㅋㅋㅋ</dd>
                 <dd class="chatTime">오전 09:37</dd>
@@ -70,9 +119,12 @@
                 <dt>이민형 사원</dt>
                 <dd class="chatBoxCont1">...네</dd>
                 <dd class="chatTime">오전 10:26</dd>
-            </dl>
+            </dl> -->
         </div>
         <div class="chatFoot">
+        
+        	<form action="insertNotice.do" method="post">
+        
             <ul class="fileUpload">
                 <li>
                     <a href="#">
@@ -80,10 +132,13 @@
                     </a>
                 </li>
                 <li class="chatSendBox">
-                    <textarea rows="5px" placeholder="메세지를 입력하세요."></textarea>
+                    <textarea rows="5px" placeholder="메세지를 입력하세요." name="message"></textarea>
                     <input type="button" value="전송" class="sendBtn">
                 </li>
             </ul>
+            
+            </form>
+            
         </div>
     </section>
     <%@ include file="include/footer.jsp" %>
