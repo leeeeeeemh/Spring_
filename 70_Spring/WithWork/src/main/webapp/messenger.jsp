@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -12,9 +13,26 @@
 			getNoticeList();
 		});
 		
-		setInterval(getNoticeList, 100); // 0.1초 간격
+		setInterval(getNoticeList, 1000); // 1초 간격
 		
+		$(".chatBtn").click(function(){
+			getChatMember();
+		});
+		
+		$(document).on("click", ".profileImg", function (e) {
+			var name = $(this).find(".memPopup").text();
+			$(".msgPopupD li").eq(1).text(name);
+			$(".chatProfile").show();
+	        $(".darkBack").show();
+		});
+		
+		$(".set11").click(function(){
+			getNoticeList2();
+		});
 	});
+	
+	/*******************************************************************/
+	
 	function insertNotice() {
 		
 		var message = $(".chatSendBox textarea").val();
@@ -32,6 +50,7 @@
 			}
 		});
 	}
+	
 	function getNoticeList() {
 		$.ajax("getNoticeList.do", {
 			type : "post",
@@ -40,7 +59,7 @@
 				var dl = "";
 				$.each(data, function(){
 					dl += "<dl>";
-					dl += "<dt>" + this.g_num + " " + this.role + "</dt>";
+					dl += "<dt>" + this.g_name + " " + this.role + "</dt>";
 					dl += "<dd class='chatBoxCont1'>" + this.message + "</dd>";
 					dl += "<dd class='chatTime'>" + this.time + "</dd>";
 					dl += "</dl>";
@@ -53,6 +72,62 @@
 			}
 		});
 	}
+	
+	function getChatMember() {
+		$.ajax("getChatMember.do", {
+			type : "post",
+			dataType : "json",
+			success : function(data){
+				var a = "";
+				$.each(data, function(){
+					a += "<a href='#' class='profileImg'>";
+					a += "<dl>";
+					a += "<dt class='memPopup'>" + this.g_name + " " + this.role + "</dt>";
+					a += "<dd class='onlineId'>" + "대화명을 입력하세요." + "</dd>";
+					a += "</dl>";
+					a += "</a>";
+				})
+				
+				$(".msgPopupA").html(a);
+			},
+			error : function(){
+				
+			}		
+		});
+	}
+	
+	function getNoticeList2() {
+		$.ajax("getNoticeList.do", {
+			type : "post",
+			dataType : "json",
+			success : function(data){
+				var dl = "";
+				$.each(data, function(index, data){
+					if(index < 1) {
+						dl += "<a href='#' class='profileImg'>";
+						dl += "<dl>";
+						dl += "<dt class='memPopup'>" + this.g_name + "</dt>";
+						dl += "<dd class='onlineId'>" + "대화명을 입력하세요." + "</dd>";
+						dl += "</dl>";
+						dl += "</a>";
+					} else if(index > 0) {
+						dl += "<a href='#' class='profileImg'>";
+						dl += "<dl>";
+						dl += "<dt class='memPopup'>" + ", " + this.g_name + "</dt>";
+						dl += "<dd class='onlineId'>" + "대화명을 입력하세요." + "</dd>";
+						dl += "</dl>";
+						dl += "</a>";
+					}
+				})
+				
+				$(".msgPopupB").html(dl);
+			},
+			error : function(){
+
+			}
+		});
+	}
+	
 </script>
 <body>
     <%@ include file="include/header.jsp" %>

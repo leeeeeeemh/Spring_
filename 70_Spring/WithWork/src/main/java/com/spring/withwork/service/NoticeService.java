@@ -2,7 +2,6 @@ package com.spring.withwork.service;
 
 import java.util.List;
 
-import com.spring.withwork.vo.MessengerVO;
 import com.spring.withwork.vo.NoticeVO;
 
 public interface NoticeService {
@@ -12,5 +11,8 @@ public interface NoticeService {
 	void deleteNotice(NoticeVO vo);
 	NoticeVO getNotice(NoticeVO vo);
 	List<NoticeVO> getNoticeList(NoticeVO vo);
-	void insertMessenger(MessengerVO vo);
+	void insertMessenger(NoticeVO vo);
+	void insertDate(NoticeVO vo);
+	List<NoticeVO> getChatMember(NoticeVO vo);
+	List<NoticeVO> getNoticeList3(NoticeVO vo);
 }

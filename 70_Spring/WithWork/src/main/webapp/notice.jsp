@@ -13,16 +13,25 @@
 			getNoticeList();
 		});
 		
-		setInterval(getNoticeList, 100); // 0.1초 간격
+		setInterval(getNoticeList, 1000); // 1초 간격
 		
 		$(".chatBtn").click(function(){
-			getNoticeList2();
+			getChatMember();
 		});
 		
-		$(".profileImg").click(function(){
-			getNoticeList3();
+		$(document).on("click", ".profileImg", function (e) {
+			var name = $(this).find(".memPopup").text();
+			$(".msgPopupD li").eq(1).text(name);
+			$(".chatProfile").show();
+	        $(".darkBack").show();
+		});
+		
+		$(".set11").click(function(){
+			getNoticeList2();
 		});
 	});
+	
+	/*******************************************************************/
 	
 	function insertNotice() {
 		
@@ -50,7 +59,7 @@
 				var dl = "";
 				$.each(data, function(){
 					dl += "<dl>";
-					dl += "<dt>" + this.g_num + " " + this.role + "</dt>";
+					dl += "<dt>" + this.g_name + " " + this.role + "</dt>";
 					dl += "<dd class='chatBoxCont1'>" + this.message + "</dd>";
 					dl += "<dd class='chatTime'>" + this.time + "</dd>";
 					dl += "</dl>";
@@ -64,8 +73,8 @@
 		});
 	}
 	
-	function getNoticeList2() {
-		$.ajax("getNoticeList.do", {
+	function getChatMember() {
+		$.ajax("getChatMember.do", {
 			type : "post",
 			dataType : "json",
 			success : function(data){
@@ -73,8 +82,8 @@
 				$.each(data, function(){
 					a += "<a href='#' class='profileImg'>";
 					a += "<dl>";
-					a += "<dt class='memPopup'>" + this.g_num + " " + this.role + "</dt>";
-					a += "<dd class='onlineId'>" + this.content + "</dd>";
+					a += "<dt class='memPopup'>" + this.g_name + " " + this.role + "</dt>";
+					a += "<dd class='onlineId'>" + "대화명을 입력하세요." + "</dd>";
 					a += "</dl>";
 					a += "</a>";
 				})
@@ -87,37 +96,72 @@
 		});
 	}
 	
-	function getNoticeList3() {
+	function getNoticeList2() {
 		$.ajax("getNoticeList.do", {
 			type : "post",
 			dataType : "json",
 			success : function(data){
-				var li = "";
-				/* $.each(data, function(){ */
-					li += "<li>";
-					li += "<img src='img/profile.png' alt='' width='110px'>";
-					li += "</li>";
-					/* li += "<li>" + this.g_num + " " + this.role + "</li>";
-					li += "<li>" + this.content + "</li>"; */
-					li += "<li>" + "이민형 사원" + "</li>";
-					li += "<li>" + "제발 좀;;;;" + "</li>";
-				/* }) */
-					
-				$(".msgPopupD").html(li);
+				var dl = "";
+				$.each(data, function(index, data){
+					if(index < 1) {
+						dl += "<a href='#' class='profileImg'>";
+						dl += "<dl>";
+						dl += "<dt class='memPopup'>" + this.g_name + "</dt>";
+						dl += "<dd class='onlineId'>" + "대화명을 입력하세요." + "</dd>";
+						dl += "</dl>";
+						dl += "</a>";
+					} else if(index > 0) {
+						dl += "<a href='#' class='profileImg'>";
+						dl += "<dl>";
+						dl += "<dt class='memPopup'>" + ", " + this.g_name + "</dt>";
+						dl += "<dd class='onlineId'>" + "대화명을 입력하세요." + "</dd>";
+						dl += "</dl>";
+						dl += "</a>";
+					}
+				})
+				
+				$(".msgPopupB").html(dl);
 			},
 			error : function(){
-				
-			}		
+
+			}
 		});
 	}
+	
+	function getNoticeList3() {
+		$.ajax("getNoticeList3.do", {
+			type : "post",
+			dataType : "json",
+			success : function(data){
+				var dl = "";
+				$.each(data, function(){
+					dl += "<dl>";
+					dl += "<dt>" + this.g_name + " " + this.role + "</dt>";
+					dl += "<dd class='chatBoxCont1'>" + this.message + "</dd>";
+					dl += "<dd class='chatTime'>" + this.time + "</dd>";
+					dl += "</dl>";
+				})
+				
+				$(".chatBox").html(dl);
+			},
+			error : function(){
+
+			}
+		});
+	}
+
+	function getRegdate() {
+		$.ajax("getRegdate.do", {
+			type : "post",
+			dataType : "json",
+			success : function(data){
+				var p = "";
+				
+			}
+		});
+	}	
+	
 </script>
-	<%-- <c:forEach var="chat" items="${notice }">
-	            <dl>
-	                <dt>${chat.g_num } ${chat.role }</dt>
-	                <dd class="chatBoxCont1">${chat.message }</dd>
-	                <dd class="chatTime">${chat.time }</dd>
-	            </dl>
-           </c:forEach> --%>
 <body>
 	<%@ include file="include/header.jsp" %>
     <section>
@@ -149,7 +193,7 @@
 	                <dd class="chatBoxCont1">${chat.message }</dd>
 	                <dd class="chatTime">${chat.time }</dd>
 	            </dl>
-           </c:forEach> --%>
+            </c:forEach> --%>
            
             <!-- <ul>
                 <li class="chatBoxCont2">ㄴㅇㅁ라ㅕㅈ마ㅓㅜ</li>

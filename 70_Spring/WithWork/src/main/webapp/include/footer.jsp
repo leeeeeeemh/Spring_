@@ -246,7 +246,7 @@
                 </a> -->
             </div>
             <div class="msgPopupB">
-                <a href="#" class="profileImg">
+                <!-- <a href="#" class="profileImg">
                     <dl>
                         <dt class="memPopup">권은영 팀장, 최은서 부사장, 곽은진 과장</dt>
                         <dd class="onlineId">카트중...</dd>
@@ -263,7 +263,7 @@
                         <dt class="memPopup">이민형 사원, 유영준 인턴</dt>
                         <dd class="onlineId">인턴 정신교육중..</dd>
                     </dl>
-                </a>
+                </a> -->
             </div>            
         </div>
     </div>
@@ -275,20 +275,22 @@
             </dt>
             <dd>
                 <ul class="msgPopupD">
-                    <!-- <li>
+                    <li>
                         <img src="img/profile.png" alt="" width="110px">
                     </li>
                     <li>권은영 팀장</li>
-                    <li>카트 들어오세요</li> -->
+                    <li>대화명을 입력하세요.</li>
                 </ul>
                 
                 <form action="insertMessenger.do" method="post">
+                <form action="insertDate.do" method="post">
                 
                 <div class="btnBox set2">
-                    <a href="#" class="set11">1:1 채팅</a>
-                    <a href="#" class="set1n">채팅방 초대</a>
+                    <input type="submit" class="set11" value="1:1 채팅">
+                    <input type="button" class="set1n" value="채팅방 초대">
                 </div>
                 
+                </form>
                 </form>
                 
             </dd>

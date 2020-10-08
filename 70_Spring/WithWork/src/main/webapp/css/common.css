@@ -648,6 +648,9 @@ footer {
     font-size: 13px;
     color: #999;
     font-weight: 400;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 /********************** 프로필 창 (팝업)-민형 *************************/
@@ -698,6 +701,9 @@ footer {
 .popupP li:nth-child(2) {
     font-size: 18px;
     font-weight: 600;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .popupP li:nth-child(3) {
@@ -714,7 +720,7 @@ footer {
     width: 100%;
 }
 
-.popupP .btnBox a {
+.popupP .btnBox input {
     display: inline-block;
     width: 20%;
     height: 44px;
@@ -726,12 +732,12 @@ footer {
     border-radius: 44px;
 }
 
-.popupP .btnBox.set2 a{
+.popupP .btnBox.set2 input{
     width: 33%;
     margin: 4px;
 }
 
-.popupP .btnBox a:hover {
+.popupP .btnBox input:hover {
     background: #ff8400;
     color: white;
 }

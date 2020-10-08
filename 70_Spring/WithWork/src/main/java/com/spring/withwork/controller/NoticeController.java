@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.withwork.service.NoticeService;
-import com.spring.withwork.vo.MessengerVO;
 import com.spring.withwork.vo.NoticeVO;
 
 @Controller
@@ -64,8 +63,21 @@ public class NoticeController {
 		return notice;
 	}
 	
+	@ResponseBody
+	@RequestMapping("/getChatMember.do")
+	public List<NoticeVO> getChatMember(NoticeVO vo, Model model) {
+		System.out.println(">>> 글 전체 목록 - String getChatMember()");
+		
+		List<NoticeVO> notice = noticeService.getChatMember(vo);
+		model.addAttribute("notice", notice);
+		
+		System.out.println("getChatMember() notice : " + notice);
+		
+		return notice;
+	}
+	
 	@RequestMapping("/insertMessenger.do")
-	public String insertMessenger(MessengerVO vo) {
+	public String insertMessenger(NoticeVO vo) {
 		System.out.println(">>> 채팅방 생성 - insertMessenger()");
 		System.out.println("> insertMessenger() vo : " + vo);
 		
@@ -73,6 +85,27 @@ public class NoticeController {
 		
 		return "messenger.jsp";
 	}
+
+	@RequestMapping("/insertDate.do")
+	public String insertDate(NoticeVO vo) {
+		System.out.println(">>> 채팅방 생성 - insertDate()");
+		System.out.println("> insertDate() vo : " + vo);
+		
+		noticeService.insertDate(vo);
+		
+		return "messenger.jsp";
+	}
 	
-	
+	@ResponseBody
+	@RequestMapping("/getNoticeList3.do")
+	public List<NoticeVO> getNoticeList3(NoticeVO vo, Model model) {
+		System.out.println(">>> 글 전체 목록 - String getNoticeList()");
+		
+		List<NoticeVO> notice = noticeService.getNoticeList3(vo);
+		model.addAttribute("notice", notice);
+		
+		System.out.println("getNoticeList3() notice : " + notice);
+		
+		return notice;
+	}
 }

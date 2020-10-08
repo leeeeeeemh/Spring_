@@ -11,6 +11,7 @@ public class NoticeVO {
 	private String content;
 	private int g_num;
 	private String role;
+	private String g_name;
 	private int cm_num;
 	
 	public NoticeVO() {
@@ -18,7 +19,7 @@ public class NoticeVO {
 	}
 
 	public NoticeVO(int m_num, int room_id, String time, String message, String attfile, String content, int g_num,
-			String role, int cm_num) {
+			String role, String g_name, int cm_num) {
 		super();
 		this.m_num = m_num;
 		this.room_id = room_id;
@@ -28,6 +29,7 @@ public class NoticeVO {
 		this.content = content;
 		this.g_num = g_num;
 		this.role = role;
+		this.g_name = g_name;
 		this.cm_num = cm_num;
 	}
 
@@ -95,6 +97,14 @@ public class NoticeVO {
 		this.role = role;
 	}
 
+	public String getG_name() {
+		return g_name;
+	}
+
+	public void setG_name(String g_name) {
+		this.g_name = g_name;
+	}
+
 	public int getCm_num() {
 		return cm_num;
 	}
@@ -106,9 +116,10 @@ public class NoticeVO {
 	@Override
 	public String toString() {
 		return "NoticeVO [m_num=" + m_num + ", room_id=" + room_id + ", time=" + time + ", message=" + message
-				+ ", attfile=" + attfile + ", content=" + content + ", g_num=" + g_num + ", role=" + role
-				+ ", cm_num=" + cm_num + "]";
+				+ ", attfile=" + attfile + ", content=" + content + ", g_num=" + g_num + ", role=" + role + ", g_name="
+				+ g_name + ", cm_num=" + cm_num + "]";
 	}
 
+	
 	
 }

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.withwork.dao.NoticeDAO;
-import com.spring.withwork.vo.MessengerVO;
 import com.spring.withwork.vo.NoticeVO;
 
 @Service("noticeService")
@@ -45,8 +44,22 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public void insertMessenger(MessengerVO vo) {
+	public void insertMessenger(NoticeVO vo) {
 		noticeDAO.insertMessenger(vo);
 	}
+	
+	@Override
+	public void insertDate(NoticeVO vo) {
+		noticeDAO.insertDate(vo);
+	}
 
+	@Override
+	public List<NoticeVO> getChatMember(NoticeVO vo) {
+		return noticeDAO.getChatMember(vo);
+	}
+
+	@Override
+	public List<NoticeVO> getNoticeList3(NoticeVO vo) {
+		return noticeDAO.getNoticeList3(vo);
+	}
 }
