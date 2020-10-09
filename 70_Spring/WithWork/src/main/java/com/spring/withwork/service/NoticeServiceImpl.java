@@ -49,8 +49,8 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 	
 	@Override
-	public void insertDate(NoticeVO vo) {
-		noticeDAO.insertDate(vo);
+	public void insertChatJoiner(NoticeVO vo) {
+		noticeDAO.insertChatJoiner(vo);
 	}
 
 	@Override
@@ -59,7 +59,12 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public List<NoticeVO> getNoticeList3(NoticeVO vo) {
-		return noticeDAO.getNoticeList3(vo);
+	public List<NoticeVO> getNoticeList2(NoticeVO vo) {
+		return noticeDAO.getNoticeList2(vo);
+	}
+	
+	@Override
+	public List<NoticeVO> getNoticeList_Search(NoticeVO vo) {
+		return noticeDAO.getNoticeList_Search(vo);
 	}
 }

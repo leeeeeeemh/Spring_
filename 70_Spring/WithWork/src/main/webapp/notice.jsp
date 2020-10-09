@@ -11,6 +11,7 @@
 		$(".sendBtn").click(function(){
 			insertNotice();
 			getNoticeList();
+			$(".chatSendBox textarea").empty();
 		});
 		
 		setInterval(getNoticeList, 1000); // 1초 간격
@@ -26,12 +27,17 @@
 	        $(".darkBack").show();
 		});
 		
-		$(".set11").click(function(){
-			getNoticeList2();
+		$(".searchBtnn").click(function(){
+			getNoticeList_Search();
 		});
+		
+		$(".set11").click(function(){
+			getChatMember2();
+		});
+		
 	});
 	
-	/*******************************************************************/
+	/*====================================================================*/
 	
 	function insertNotice() {
 		
@@ -73,6 +79,33 @@
 		});
 	}
 	
+	function getNoticeList_Search() {
+		
+		var searchMember = $(".searchBoxx").val();
+		
+		$.ajax("getNoticeList_Search.do", {
+			type : "post",
+			dataType : "json",
+			data : "searchMember=" + searchMember,
+			success : function(data){
+				var a = "";
+				$.each(data, function(){
+					a += "<a href='#' class='profileImg'>";
+					a += "<dl>";
+					a += "<dt class='memPopup'>" + this.g_name + " " + this.role + "</dt>";
+					a += "<dd class='onlineId'>" + this.content + "</dd>";
+					a += "</dl>";
+					a += "</a>";
+				})
+				
+				$(".msgPopupA").html(a);
+			},
+			error : function(){
+				
+			}
+		});	
+	}
+	
 	function getChatMember() {
 		$.ajax("getChatMember.do", {
 			type : "post",
@@ -81,9 +114,10 @@
 				var a = "";
 				$.each(data, function(){
 					a += "<a href='#' class='profileImg'>";
+					a += "<input type='hidden' name='g_name' value='" + this.g_name + "'>";
 					a += "<dl>";
 					a += "<dt class='memPopup'>" + this.g_name + " " + this.role + "</dt>";
-					a += "<dd class='onlineId'>" + "대화명을 입력하세요." + "</dd>";
+					a += "<dd class='onlineId'>" + this.content + "</dd>";
 					a += "</dl>";
 					a += "</a>";
 				})
@@ -96,40 +130,36 @@
 		});
 	}
 	
-	function getNoticeList2() {
-		$.ajax("getNoticeList.do", {
+	function getChatMember2() {
+		$.ajax("getChatMember.do", {
 			type : "post",
 			dataType : "json",
 			success : function(data){
-				var dl = "";
-				$.each(data, function(index, data){
-					if(index < 1) {
-						dl += "<a href='#' class='profileImg'>";
-						dl += "<dl>";
-						dl += "<dt class='memPopup'>" + this.g_name + "</dt>";
-						dl += "<dd class='onlineId'>" + "대화명을 입력하세요." + "</dd>";
-						dl += "</dl>";
-						dl += "</a>";
-					} else if(index > 0) {
-						dl += "<a href='#' class='profileImg'>";
-						dl += "<dl>";
-						dl += "<dt class='memPopup'>" + ", " + this.g_name + "</dt>";
-						dl += "<dd class='onlineId'>" + "대화명을 입력하세요." + "</dd>";
-						dl += "</dl>";
-						dl += "</a>";
-					}
-				})
+				var originTxt = $(".msgPopupB").html();
+				var chatMember = "";
 				
-				$(".msgPopupB").html(dl);
+				originTxt += "<a href='#' class='profileImg'>";
+				originTxt += "<input type='hidden' name='g_name' value='" + this.g_name + "'>";
+				originTxt += "<dl>";
+				originTxt += "<dt class='memPopup'>" + this.g_name + " " + this.role + "</dt>";
+				originTxt += "<dd class='onlineId'>" + this.content + "</dd>";
+				originTxt += "</dl>";
+				originTxt += "</a>";
+				
+				$.each(data, function(){
+					/* this.room_num */
+				});
+				
+				$(".msgPopupB").html(originTxt);
 			},
 			error : function(){
 
 			}
 		});
-	}
+	} 
 	
-	function getNoticeList3() {
-		$.ajax("getNoticeList3.do", {
+	function getNoticeList2() {
+		$.ajax("getNoticeList2.do", {
 			type : "post",
 			dataType : "json",
 			success : function(data){

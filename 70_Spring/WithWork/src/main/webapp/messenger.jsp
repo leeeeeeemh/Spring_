@@ -11,6 +11,7 @@
 		$(".sendBtn").click(function(){
 			insertNotice();
 			getNoticeList();
+			$(".chatSendBox textarea").empty();
 		});
 		
 		setInterval(getNoticeList, 1000); // 1초 간격
@@ -26,9 +27,14 @@
 	        $(".darkBack").show();
 		});
 		
-		$(".set11").click(function(){
-			getNoticeList2();
+		$(".searchBtnn").click(function(){
+			getNoticeList_Search();
 		});
+		
+		$(".set11").click(function(){
+			getChatMember2();
+		});
+		
 	});
 	
 	/*******************************************************************/
@@ -73,6 +79,33 @@
 		});
 	}
 	
+	function getNoticeList_Search() {
+		
+		var searchMember = $(".searchBoxx").val();
+		
+		$.ajax("getNoticeList_Search.do", {
+			type : "post",
+			dataType : "json",
+			data : "searchMember=" + searchMember,
+			success : function(data){
+				var a = "";
+				$.each(data, function(){
+					a += "<a href='#' class='profileImg'>";
+					a += "<dl>";
+					a += "<dt class='memPopup'>" + this.g_name + " " + this.role + "</dt>";
+					a += "<dd class='onlineId'>" + "대화명을 입력하세요." + "</dd>";
+					a += "</dl>";
+					a += "</a>";
+				})
+				
+				$(".msgPopupA").html(a);
+			},
+			error : function(){
+				
+			}
+		});	
+	}
+	
 	function getChatMember() {
 		$.ajax("getChatMember.do", {
 			type : "post",
@@ -97,27 +130,13 @@
 	}
 	
 	function getNoticeList2() {
-		$.ajax("getNoticeList.do", {
+		$.ajax("getNoticeList2.do", {
 			type : "post",
 			dataType : "json",
 			success : function(data){
 				var dl = "";
 				$.each(data, function(index, data){
-					if(index < 1) {
-						dl += "<a href='#' class='profileImg'>";
-						dl += "<dl>";
-						dl += "<dt class='memPopup'>" + this.g_name + "</dt>";
-						dl += "<dd class='onlineId'>" + "대화명을 입력하세요." + "</dd>";
-						dl += "</dl>";
-						dl += "</a>";
-					} else if(index > 0) {
-						dl += "<a href='#' class='profileImg'>";
-						dl += "<dl>";
-						dl += "<dt class='memPopup'>" + ", " + this.g_name + "</dt>";
-						dl += "<dd class='onlineId'>" + "대화명을 입력하세요." + "</dd>";
-						dl += "</dl>";
-						dl += "</a>";
-					}
+					
 				})
 				
 				$(".msgPopupB").html(dl);

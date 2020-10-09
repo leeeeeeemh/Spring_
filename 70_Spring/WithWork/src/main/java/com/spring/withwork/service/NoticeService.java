@@ -12,7 +12,8 @@ public interface NoticeService {
 	NoticeVO getNotice(NoticeVO vo);
 	List<NoticeVO> getNoticeList(NoticeVO vo);
 	void insertMessenger(NoticeVO vo);
-	void insertDate(NoticeVO vo);
+	void insertChatJoiner(NoticeVO vo);
 	List<NoticeVO> getChatMember(NoticeVO vo);
-	List<NoticeVO> getNoticeList3(NoticeVO vo);
+	List<NoticeVO> getNoticeList2(NoticeVO vo);
+	List<NoticeVO> getNoticeList_Search(NoticeVO vo);
 }

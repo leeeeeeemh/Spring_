@@ -1,10 +1,13 @@
 package com.spring.withwork.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -76,36 +79,42 @@ public class NoticeController {
 		return notice;
 	}
 	
-	@RequestMapping("/insertMessenger.do")
+	@RequestMapping("/insert11Chat.do")
 	public String insertMessenger(NoticeVO vo) {
 		System.out.println(">>> 채팅방 생성 - insertMessenger()");
 		System.out.println("> insertMessenger() vo : " + vo);
 		
 		noticeService.insertMessenger(vo);
+		noticeService.insertChatJoiner(vo);
 		
 		return "messenger.jsp";
 	}
 
-	@RequestMapping("/insertDate.do")
-	public String insertDate(NoticeVO vo) {
-		System.out.println(">>> 채팅방 생성 - insertDate()");
-		System.out.println("> insertDate() vo : " + vo);
-		
-		noticeService.insertDate(vo);
-		
-		return "messenger.jsp";
-	}
 	
 	@ResponseBody
-	@RequestMapping("/getNoticeList3.do")
-	public List<NoticeVO> getNoticeList3(NoticeVO vo, Model model) {
-		System.out.println(">>> 글 전체 목록 - String getNoticeList()");
+	@RequestMapping("/getNoticeList2.do")
+	public List<NoticeVO> getNoticeList2(NoticeVO vo, Model model) {
+		System.out.println(">>> 글 전체 목록 - String getNoticeList2()");
 		
-		List<NoticeVO> notice = noticeService.getNoticeList3(vo);
+		List<NoticeVO> notice = noticeService.getNoticeList2(vo);
 		model.addAttribute("notice", notice);
 		
-		System.out.println("getNoticeList3() notice : " + notice);
+		System.out.println("getNoticeList2() notice : " + notice);
 		
 		return notice;
 	}
+	
+	@ResponseBody
+	@RequestMapping("/getNoticeList_Search.do")
+	public List<NoticeVO> getNoticeList_Search(NoticeVO vo, Model model) {
+		System.out.println(">>> 글 전체 목록 - String getNoticeList_Search()");
+		
+		List<NoticeVO> notice = noticeService.getNoticeList_Search(vo);
+		model.addAttribute("notice", notice);
+		
+		System.out.println("getNoticeList_Search() notice : " + notice);
+		
+		return notice;
+	}
+	
 }

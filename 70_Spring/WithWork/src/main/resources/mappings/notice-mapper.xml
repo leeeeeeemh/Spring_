@@ -6,24 +6,25 @@
 
 	<!-- 메세지 입력 -->
 	<insert id="insertNotice" parameterType="notice">
-		INSERT INTO CHATMESSAGE (M_NUM, ROOM_ID, TIME, MESSAGE, ATTFILE, CONTENT, G_NUM, CM_NUM)
-		VALUES (1, (SELECT MAX(ROOM_ID) FROM CHATROOM), SYSDATE, #{message}, '첨부파일', '대화명', 1, CM_SEQ.NEXTVAL)
+		INSERT INTO CHATMESSAGE (M_NUM, ROOM_ID, TIME, MESSAGE, ATTFILE, G_NUM, CM_NUM)
+		VALUES (1, (SELECT MAX(ROOM_ID) FROM CHATROOM), SYSDATE, #{message}, '첨부파일', 1, CM_SEQ.NEXTVAL)
 	</insert>
 	
 	<!-- 대화명 수정 -->
 	<update id="updateNotice" parameterType="notice">
-		UPDATE CHATMESSAGE SET CONTENT = '자리비움' WHERE G_NUM = 1
+		UPDATE MEMBER SET CONTENT = '자리비움' WHERE M_NUM = 1
 	</update>
 
 	<!-- 전체 조회 -->	
 	<select id="getNoticeList" parameterType="notice" resultType="notice">
-		SELECT C.M_NUM, C.ROOM_ID, C.TIME<!-- (SELECT TO_CHAR(C.TIME, 'AM HH12:MI') FROM DUAL) -->,
-			   C.MESSAGE, C.ATTFILE, C.CONTENT, C.G_NUM, C.CM_NUM,
+		SELECT C.M_NUM, C.ROOM_ID, TO_CHAR(C.TIME, 'AM HH12:MI'),
+			   C.MESSAGE, C.ATTFILE, C.G_NUM, C.CM_NUM,
 			   G.G_NUM, G.ID, G.PASSWORD, G.G_NAME, G.ADDRESS, G.EMAIL, G.PHONE, G.REGDATE,
-			   M.M_NUM, M.C_NUM, M.G_NUM, M.AUTHORITY, M.ROLE, M.D_NUM
+			   M.M_NUM, M.C_NUM, M.G_NUM, M.AUTHORITY, M.ROLE, M.D_NUM, M.CONTENT
 		  FROM GUEST G, MEMBER M, CHATMESSAGE C
 		 WHERE G.G_NUM = M.G_NUM
 		   AND C.M_NUM = M.M_NUM
+		 ORDER BY C.TIME
 	</select>
 	
 	<select id="getChatMember" parameterType="notice" resultType="notice">
@@ -32,21 +33,28 @@
 		 WHERE G.G_NUM = M.G_NUM
 	</select>
 
-	<!-- 채팅방 날짜 조회 -->
-	<select id="getNoticeList3" parameterType="notice" resultType="notice">
+	<select id="getNoticeList2" parameterType="notice" resultType="notice">
 		SELECT *
 		  FROM GUEST G, MEMBER M
 		 WHERE G.G_NUM = M.G_NUM
 	</select>
 	
+	<!-- 멤버 검색 -->
+	<select id="getNoticeList_Search" parameterType="notice" resultType="notice">
+		SELECT *
+		  FROM GUEST G, MEMBER M
+		 WHERE G.G_NUM = M.G_NUM
+		   AND G_NAME LIKE '%'|| #{searchMember} ||'%' ORDER BY G_NAME
+	</select>
+	
 	<!-- 채팅방 생성 -->
 	<insert id="insertMessenger" parameterType="notice">
-		INSERT INTO CHATROOM VALUES (ROOM_SEQ.NEXTVAL)
+		INSERT INTO CHATROOM VALUES (ROOM_SEQ.NEXTVAL, SYSDATE)
 	</insert>
 	
-	<insert id="insertDate" parameterType="notice">
-		INSERT INTO CHATDATE
-		VALUES (CD_SEQ.NEXTVAL, (SELECT MAX(ROOM_ID) FROM CHATROOM), SYSDATE)
+	<insert id="insertChatJoiner" parameterType="notice">
+		INSERT INTO CHATJOINER
+		VALUES (CJ_SEQ.NEXTVAL, (SELECT MAX(ROOM_ID) FROM CHATROOM), 1<!-- #{m_num} -->)
 	</insert>
 	
 </mapper>

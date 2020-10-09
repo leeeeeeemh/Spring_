@@ -172,9 +172,10 @@
             <li><a href="#">멤버</a></li>
             <li><a href="#">대화방</a></li>
         </ul>
+        <!-- 검색 영역 -->
         <div class="projectSearch searchMemberChat">
-            <input type="text" placeholder="멤버를 검색하세요.">
-            <input type="button" value="">
+            <input type="text" placeholder="멤버를 검색하세요." name=searchMember class="searchBoxx">
+            <input type="button" value="" class="searchBtnn">
         </div>
         <div class="msgPopupAll">
             <div class="msgPopupA">
@@ -282,8 +283,7 @@
                     <li>대화명을 입력하세요.</li>
                 </ul>
                 
-                <form action="insertMessenger.do" method="post">
-                <form action="insertDate.do" method="post">
+                <form action="insert11Chat.do" method="post" class="insertMessenger">
                 
                 <div class="btnBox set2">
                     <input type="submit" class="set11" value="1:1 채팅">
@@ -291,8 +291,6 @@
                 </div>
                 
                 </form>
-                </form>
-                
             </dd>
         </dl>
     </div>
