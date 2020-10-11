@@ -150,6 +150,24 @@
     color: white;
 }
 
+.sendBtn2 {
+    display: inline-block;
+    width: 70px;
+    height: 40px;
+    line-height: 40px;
+    color: white;
+    background: #272a44;
+    font-size: 17px;
+    text-align: center;
+    border-radius: 10px;
+    vertical-align: bottom;
+}
+
+.sendBtn2:hover {
+    background-color: #ff8400;
+    color: white;
+}
+
 
 
 

@@ -11,10 +11,26 @@
 		$(".sendBtn").click(function(){
 			insertNotice();
 			getNoticeList();
-			$(".chatSendBox textarea").empty();
+		});
+		
+		$(".textarea").keypress(function(event){
+		     if (event.which == 13) {
+		         $(".sendBtn").click();
+		         return false;
+		     }
 		});
 		
 		setInterval(getNoticeList, 1000); // 1초 간격
+		
+		/* var scroll = document.getElementsByClassName("chatBox");
+		scroll.scrollTop = scroll.scrollHeight; */
+
+		var chatBoxId = document.getElementById("chatBoxId");
+		chatBoxId.scrollTop = chatBoxId.scrollHeight;
+
+		/* $(".chatBox").scrollTop(
+			$(".chatBox")[0].scrollHeight
+		); */
 		
 		$(".chatBtn").click(function(){
 			getChatMember();
@@ -23,6 +39,14 @@
 		$(document).on("click", ".profileImg", function (e) {
 			var name = $(this).find(".memPopup").text();
 			$(".msgPopupD li").eq(1).text(name);
+
+			var condition = $(this).find(".onlineId").text();
+			$(".msgPopupD li").eq(2).text(condition);
+						
+			var chatM_num = $(this).find("input").val();
+			$(".chatM_num").val(chatM_num);
+			console.log(".chatM_num : " + chatM_num);
+			
 			$(".chatProfile").show();
 	        $(".darkBack").show();
 		});
@@ -31,9 +55,14 @@
 			getNoticeList_Search();
 		});
 		
-		$(".set11").click(function(){
-			getChatMember2();
+		$(".searchBoxx").keypress(function(event){
+		     if (event.which == 13) {
+		         $(".searchBtnn").click();
+		         return false;
+		     }
 		});
+		
+		/* getChatMember2(); */
 		
 	});
 	
@@ -41,7 +70,7 @@
 	
 	function insertNotice() {
 		
-		var message = $(".chatSendBox textarea").val();
+		var message = $(".textarea").val();
 		
 		$.ajax("insertNotice.do", {
 			type : "post",
@@ -50,6 +79,7 @@
 			success : function(data) {
 				
 				console.log("data : " + data);
+				$(".textarea").val("");
 			},
 			error : function(){
 				
@@ -63,6 +93,9 @@
 			dataType : "json",
 			success : function(data){
 				var dl = "";
+					dl += "<p>"
+					dl += "<span>2020년 12월 8일 화요일</span>"
+					dl += "</p>"
 				$.each(data, function(){
 					dl += "<dl>";
 					dl += "<dt>" + this.g_name + " " + this.role + "</dt>";
@@ -78,7 +111,7 @@
 			}
 		});
 	}
-	
+
 	function getNoticeList_Search() {
 		
 		var searchMember = $(".searchBoxx").val();
@@ -114,7 +147,7 @@
 				var a = "";
 				$.each(data, function(){
 					a += "<a href='#' class='profileImg'>";
-					a += "<input type='hidden' name='g_name' value='" + this.g_name + "'>";
+					a += "<input type='hidden' name='m_num' value='" + this.m_num + "'>";
 					a += "<dl>";
 					a += "<dt class='memPopup'>" + this.g_name + " " + this.role + "</dt>";
 					a += "<dd class='onlineId'>" + this.content + "</dd>";
@@ -124,6 +157,7 @@
 				
 				$(".msgPopupA").html(a);
 			},
+			
 			error : function(){
 				
 			}		
@@ -131,23 +165,21 @@
 	}
 	
 	function getChatMember2() {
-		$.ajax("getChatMember.do", {
+		$.ajax("getChatMember2.do", {
 			type : "post",
 			dataType : "json",
 			success : function(data){
 				var originTxt = $(".msgPopupB").html();
 				var chatMember = "";
 				
-				originTxt += "<a href='#' class='profileImg'>";
-				originTxt += "<input type='hidden' name='g_name' value='" + this.g_name + "'>";
-				originTxt += "<dl>";
-				originTxt += "<dt class='memPopup'>" + this.g_name + " " + this.role + "</dt>";
-				originTxt += "<dd class='onlineId'>" + this.content + "</dd>";
-				originTxt += "</dl>";
-				originTxt += "</a>";
-				
 				$.each(data, function(){
-					/* this.room_num */
+					originTxt += "<a href='#' class='profileImg'>";
+					originTxt += "<input type='hidden' name='room_id' value='" + this.room_id + "'>";
+					originTxt += "<dl>";
+					originTxt += "<dt class='memPopup'>" + this.g_name + " " + this.role + "</dt>";
+					originTxt += "<dd class='onlineId'>" + this.content + "</dd>";
+					originTxt += "</dl>";
+					originTxt += "</a>";
 				});
 				
 				$(".msgPopupB").html(originTxt);
@@ -156,40 +188,8 @@
 
 			}
 		});
-	} 
-	
-	function getNoticeList2() {
-		$.ajax("getNoticeList2.do", {
-			type : "post",
-			dataType : "json",
-			success : function(data){
-				var dl = "";
-				$.each(data, function(){
-					dl += "<dl>";
-					dl += "<dt>" + this.g_name + " " + this.role + "</dt>";
-					dl += "<dd class='chatBoxCont1'>" + this.message + "</dd>";
-					dl += "<dd class='chatTime'>" + this.time + "</dd>";
-					dl += "</dl>";
-				})
-				
-				$(".chatBox").html(dl);
-			},
-			error : function(){
-
-			}
-		});
 	}
-
-	function getRegdate() {
-		$.ajax("getRegdate.do", {
-			type : "post",
-			dataType : "json",
-			success : function(data){
-				var p = "";
-				
-			}
-		});
-	}	
+	
 	
 </script>
 <body>
@@ -206,16 +206,16 @@
             </dt>
             <dd>오늘의 공지사항을 확인해보세요.</dd>
         </dl>
-        <div class="chatBox">
+        <div class="chatBox" id="chatBoxId">
             <!-- <dl>
                 <dt>권은영 팀장</dt>
                 <dd class="chatBoxCont1">여러분, 카트 덤비세요~</dd>
                 <dd class="chatTime">오후 11:57</dd>
             </dl> -->
             
-            <p>
+            <!-- <p>
                 <span>2020년 12월 8일 화요일</span>
-            </p>
+            </p> -->
             
             <%-- <c:forEach var="chat" items="${notice }">
 	            <dl>
@@ -276,7 +276,7 @@
                     </a>
                 </li>
                 <li class="chatSendBox">
-                    <textarea rows="5px" placeholder="메세지를 입력하세요." name="message"></textarea>
+                    <textarea rows="5px" placeholder="메세지를 입력하세요." name="message" class="textarea"></textarea>
                     <input type="button" value="전송" class="sendBtn">
                 </li>
             </ul>

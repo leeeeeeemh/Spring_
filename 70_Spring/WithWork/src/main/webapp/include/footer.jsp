@@ -283,9 +283,10 @@
                     <li>대화명을 입력하세요.</li>
                 </ul>
                 
-                <form action="insert11Chat.do" method="post" class="insertMessenger">
+                <form action="insert11Chat.do" method="post" class="insertRoom">
                 
                 <div class="btnBox set2">
+                	<input type="hidden" class="chatM_num" name="m_num">
                     <input type="submit" class="set11" value="1:1 채팅">
                     <input type="button" class="set1n" value="채팅방 초대">
                 </div>

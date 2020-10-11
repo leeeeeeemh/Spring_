@@ -9,9 +9,15 @@
 <script>
 	$(function(){
 		$(".sendBtn").click(function(){
-			insertNotice();
-			getNoticeList();
-			$(".chatSendBox textarea").empty();
+			insertMessenger();
+			getMessengerList();
+		});
+		
+		$(".textarea").keypress(function(event){
+		     if (event.which == 13) {
+		         $(".sendBtn").click();
+		         return false;
+		     }
 		});
 		
 		setInterval(getNoticeList, 1000); // 1초 간격
@@ -23,6 +29,14 @@
 		$(document).on("click", ".profileImg", function (e) {
 			var name = $(this).find(".memPopup").text();
 			$(".msgPopupD li").eq(1).text(name);
+			
+			var condition = $(this).find(".onlineId").text();
+			$(".msgPopupD li").eq(2).text(condition);
+			
+			var chatM_num = $(this).find("input").val();
+			$(".chatM_num").val(chatM_num);
+			console.log(".chatM_num : " + chatM_num);
+			
 			$(".chatProfile").show();
 	        $(".darkBack").show();
 		});
@@ -31,25 +45,31 @@
 			getNoticeList_Search();
 		});
 		
-		$(".set11").click(function(){
-			getChatMember2();
+		$(".searchBoxx").keypress(function(event){
+		     if (event.which == 13) {
+		         $(".searchBtnn").click();
+		         return false;
+		     }
 		});
+		
+		/* getChatMember2(); */
 		
 	});
 	
-	/*******************************************************************/
+	/*===================================================================*/
 	
-	function insertNotice() {
+	function insertMessenger() {
 		
-		var message = $(".chatSendBox textarea").val();
+		var message = $(".textarea").val();
 		
-		$.ajax("insertNotice.do", {
+		$.ajax("insertMessenger.do", {
 			type : "post",
 			dataType : "json",
 			data : "message=" + message,
 			success : function(data) {
 				
 				console.log("data : " + data);
+				$(".textarea").val("");
 			},
 			error : function(){
 				
@@ -57,12 +77,15 @@
 		});
 	}
 	
-	function getNoticeList() {
-		$.ajax("getNoticeList.do", {
+	function getMessengerList() {
+		$.ajax("getMessengerList.do", {
 			type : "post",
 			dataType : "json",
 			success : function(data){
 				var dl = "";
+					dl += "<p>"
+					dl += "<span>2020년 12월 8일 화요일</span>"
+					dl += "</p>"
 				$.each(data, function(){
 					dl += "<dl>";
 					dl += "<dt>" + this.g_name + " " + this.role + "</dt>";
@@ -93,7 +116,7 @@
 					a += "<a href='#' class='profileImg'>";
 					a += "<dl>";
 					a += "<dt class='memPopup'>" + this.g_name + " " + this.role + "</dt>";
-					a += "<dd class='onlineId'>" + "대화명을 입력하세요." + "</dd>";
+					a += "<dd class='onlineId'>" + this.content + "</dd>";
 					a += "</dl>";
 					a += "</a>";
 				})
@@ -114,9 +137,10 @@
 				var a = "";
 				$.each(data, function(){
 					a += "<a href='#' class='profileImg'>";
+					a += "<input type='hidden' name='m_num' value='" + this.m_num + "'>";
 					a += "<dl>";
 					a += "<dt class='memPopup'>" + this.g_name + " " + this.role + "</dt>";
-					a += "<dd class='onlineId'>" + "대화명을 입력하세요." + "</dd>";
+					a += "<dd class='onlineId'>" + this.content + "</dd>";
 					a += "</dl>";
 					a += "</a>";
 				})
@@ -129,17 +153,25 @@
 		});
 	}
 	
-	function getNoticeList2() {
-		$.ajax("getNoticeList2.do", {
+	function getChatMember2() {
+		$.ajax("getChatMember2.do", {
 			type : "post",
 			dataType : "json",
 			success : function(data){
-				var dl = "";
-				$.each(data, function(index, data){
-					
-				})
+				var originTxt = $(".msgPopupB").html();
+				var chatMember = "";
+								
+				$.each(data, function(){
+					originTxt += "<a href='#' class='profileImg'>";
+					originTxt += "<input type='hidden' name='room_id' value='" + this.room_id + "'>";
+					originTxt += "<dl>";
+					originTxt += "<dt class='memPopup'>" + this.g_name + " " + this.role + "</dt>";
+					originTxt += "<dd class='onlineId'>" + this.content + "</dd>";
+					originTxt += "</dl>";
+					originTxt += "</a>";
+				});
 				
-				$(".msgPopupB").html(dl);
+				$(".msgPopupB").html(originTxt);
 			},
 			error : function(){
 
@@ -181,9 +213,9 @@
                 <li class="chatBoxCont2">ㄴㅁ려ㅑㅗ뮈ㅈ</li>
                 <li class="chatTime2">오후 11:59</li>
             </ul> -->
-            <p>
+            <!-- <p>
                 <span>2020년 12월 8일 화요일</span>
-            </p>            
+            </p> -->            
             <!-- <dl>
                 <dt>박실 대리</dt>
                 <dd class="chatBoxCont1">ㅋㅋㅋ</dd>
@@ -217,7 +249,7 @@
         </div>
         <div class="chatFoot">
         
-        	<form action="insertNotice.do" method="post">
+        	<form action="insertMessenger.do" method="post">
         
             <ul class="fileUpload">
                 <li>
@@ -226,7 +258,7 @@
                     </a>
                 </li>
                 <li class="chatSendBox">
-                    <textarea rows="5px" placeholder="메세지를 입력하세요." name="message"></textarea>
+                    <textarea rows="5px" placeholder="메세지를 입력하세요." name="message" class="textarea"></textarea>
                     <input type="button" value="전송" class="sendBtn">
                 </li>
             </ul>

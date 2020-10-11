@@ -30,12 +30,27 @@ public class NoticeController {
 	@ResponseBody
 	@RequestMapping("/insertNotice.do")
 	public int insertNotice(NoticeVO vo) {
+		vo.setM_num(6);
 		System.out.println(">>> 메세지 입력 - insertNotice()");
 		System.out.println("> insertNotice() vo : " + vo);
 		
 		int notice = noticeService.insertNotice(vo);
 		
 		System.out.println("insertNotice() notice : " + notice);
+		
+		return notice;
+	}
+
+	@ResponseBody
+	@RequestMapping("/insertMessenger.do")
+	public int insertMessenger(NoticeVO vo) {
+		vo.setM_num(6);
+		System.out.println(">>> 메세지 입력 - insertMessenger()");
+		System.out.println("> insertMessenger() vo : " + vo);
+		
+		int notice = noticeService.insertMessenger(vo);
+		
+		System.out.println("insertMessenger() notice : " + notice);
 		
 		return notice;
 	}
@@ -65,6 +80,19 @@ public class NoticeController {
 		
 		return notice;
 	}
+
+	@ResponseBody
+	@RequestMapping("/getMessengerList.do")
+	public List<NoticeVO> getMessengerList(NoticeVO vo, Model model) {
+		System.out.println(">>> 글 전체 목록 - String getMessengerList()");
+		
+		List<NoticeVO> notice = noticeService.getMessengerList(vo);
+		model.addAttribute("notice", notice);
+		
+		System.out.println("getMessengerList() notice : " + notice);
+		
+		return notice;
+	}
 	
 	@ResponseBody
 	@RequestMapping("/getChatMember.do")
@@ -79,13 +107,30 @@ public class NoticeController {
 		return notice;
 	}
 	
-	@RequestMapping("/insert11Chat.do")
-	public String insertMessenger(NoticeVO vo) {
-		System.out.println(">>> 채팅방 생성 - insertMessenger()");
-		System.out.println("> insertMessenger() vo : " + vo);
+	@ResponseBody
+	@RequestMapping("/getChatMember2.do")
+	public List<NoticeVO> getChatMember2(NoticeVO vo, Model model) {
+		System.out.println(">>> 글 전체 목록 - String getChatMember2()");
 		
-		noticeService.insertMessenger(vo);
+		List<NoticeVO> notice = noticeService.getChatMember2(vo);
+		model.addAttribute("notice", notice);
+		
+		System.out.println("getChatMember2() notice : " + notice);
+		
+		return notice;
+	}
+	
+	@RequestMapping("/insert11Chat.do")
+	public String insertRoom(NoticeVO vo) {
+		NoticeVO myMNUM = new NoticeVO();
+		myMNUM.setM_num(6);
+		System.out.println(">>> 채팅방 생성 - insertRoom()");
+		System.out.println("> insertRoom() vo : " + vo);
+		
+		noticeService.insertRoom(vo);
 		noticeService.insertChatJoiner(vo);
+		noticeService.insertChatJoiner(myMNUM);
+		/* noticeService.getMessengerList(vo); */
 		
 		return "messenger.jsp";
 	}

@@ -24,6 +24,11 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
+	public int insertMessenger(NoticeVO vo) {
+		return noticeDAO.insertMessenger(vo);
+	}
+
+	@Override
 	public int updateNotice(NoticeVO vo) {
 		return noticeDAO.updateNotice(vo);
 	}
@@ -44,8 +49,13 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public void insertMessenger(NoticeVO vo) {
-		noticeDAO.insertMessenger(vo);
+	public List<NoticeVO> getMessengerList(NoticeVO vo) {
+		return noticeDAO.getMessengerList(vo);
+	}
+
+	@Override
+	public void insertRoom(NoticeVO vo) {
+		noticeDAO.insertRoom(vo);
 	}
 	
 	@Override
@@ -56,6 +66,11 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public List<NoticeVO> getChatMember(NoticeVO vo) {
 		return noticeDAO.getChatMember(vo);
+	}
+	
+	@Override
+	public List<NoticeVO> getChatMember2(NoticeVO vo) {
+		return noticeDAO.getChatMember2(vo);
 	}
 
 	@Override

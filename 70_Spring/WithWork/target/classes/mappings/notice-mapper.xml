@@ -6,8 +6,13 @@
 
 	<!-- 메세지 입력 -->
 	<insert id="insertNotice" parameterType="notice">
-		INSERT INTO CHATMESSAGE (M_NUM, ROOM_ID, TIME, MESSAGE, ATTFILE, G_NUM, CM_NUM)
-		VALUES (1, (SELECT MAX(ROOM_ID) FROM CHATROOM), SYSDATE, #{message}, '첨부파일', 1, CM_SEQ.NEXTVAL)
+		INSERT INTO CHATMESSAGE (M_NUM, P_NUM, TIME, MESSAGE, ATTFILE, G_NUM, CM_NUM)
+		VALUES (#{m_num}, 1, SYSDATE, #{message}, '첨부파일', 1, CM_SEQ.NEXTVAL)
+	</insert>
+	
+	<insert id="insertMessenger" parameterType="notice">
+		INSERT INTO CHATMESSAGE2 (M_NUM, ROOM_ID, TIME, MESSAGE, ATTFILE, G_NUM, CM_NUM2)
+		VALUES (#{m_num}, (SELECT MAX(ROOM_ID) FROM CHATROOM), SYSDATE, #{message}, '첨부파일', 1, CM2_SEQ.NEXTVAL)
 	</insert>
 	
 	<!-- 대화명 수정 -->
@@ -17,26 +22,39 @@
 
 	<!-- 전체 조회 -->	
 	<select id="getNoticeList" parameterType="notice" resultType="notice">
-		SELECT C.M_NUM, C.ROOM_ID, TO_CHAR(C.TIME, 'AM HH12:MI'),
-			   C.MESSAGE, C.ATTFILE, C.G_NUM, C.CM_NUM,
+		SELECT C.M_NUM, C.P_NUM, TO_CHAR(C.TIME, 'AM HH12:MI') AS TIME, C.MESSAGE, C.ATTFILE, C.G_NUM, C.CM_NUM,
 			   G.G_NUM, G.ID, G.PASSWORD, G.G_NAME, G.ADDRESS, G.EMAIL, G.PHONE, G.REGDATE,
 			   M.M_NUM, M.C_NUM, M.G_NUM, M.AUTHORITY, M.ROLE, M.D_NUM, M.CONTENT
 		  FROM GUEST G, MEMBER M, CHATMESSAGE C
 		 WHERE G.G_NUM = M.G_NUM
 		   AND C.M_NUM = M.M_NUM
-		 ORDER BY C.TIME
+		 ORDER BY C.CM_NUM
+	</select>
+	
+	<select id="getMessengerList" parameterType="notice" resultType="notice">
+		SELECT C.M_NUM, C.ROOM_ID, TO_CHAR(C.TIME, 'AM HH12:MI') AS TIME, C.MESSAGE, C.ATTFILE, C.G_NUM, C.CM_NUM2,
+			   G.G_NUM, G.ID, G.PASSWORD, G.G_NAME, G.ADDRESS, G.EMAIL, G.PHONE, G.REGDATE,
+			   M.M_NUM, M.C_NUM, M.G_NUM, M.AUTHORITY, M.ROLE, M.D_NUM, M.CONTENT
+		  FROM GUEST G, MEMBER M, CHATMESSAGE2 C
+		 WHERE G.G_NUM = M.G_NUM
+		   AND C.M_NUM = M.M_NUM
+		 ORDER BY C.CM_NUM2
 	</select>
 	
 	<select id="getChatMember" parameterType="notice" resultType="notice">
 		SELECT *
 		  FROM GUEST G, MEMBER M
 		 WHERE G.G_NUM = M.G_NUM
+		 ORDER BY G.G_NAME
 	</select>
-
-	<select id="getNoticeList2" parameterType="notice" resultType="notice">
+	
+	<select id="getChatMember2" parameterType="notice" resultType="notice">
 		SELECT *
-		  FROM GUEST G, MEMBER M
-		 WHERE G.G_NUM = M.G_NUM
+		  FROM CHATJOINER J, MEMBER M, GUEST G
+		 WHERE J.M_NUM = M.M_NUM
+		   AND G.G_NUM = M.G_NUM
+		   <!-- AND J.ROOM_ID = #{room_id} -->
+		 ORDER BY G.G_NAME
 	</select>
 	
 	<!-- 멤버 검색 -->
@@ -48,13 +66,13 @@
 	</select>
 	
 	<!-- 채팅방 생성 -->
-	<insert id="insertMessenger" parameterType="notice">
+	<insert id="insertRoom" parameterType="notice">
 		INSERT INTO CHATROOM VALUES (ROOM_SEQ.NEXTVAL, SYSDATE)
 	</insert>
 	
 	<insert id="insertChatJoiner" parameterType="notice">
 		INSERT INTO CHATJOINER
-		VALUES (CJ_SEQ.NEXTVAL, (SELECT MAX(ROOM_ID) FROM CHATROOM), 1<!-- #{m_num} -->)
+		VALUES (CJ_SEQ.NEXTVAL, (SELECT MAX(ROOM_ID) FROM CHATROOM), #{m_num})
 	</insert>
 	
 </mapper>
