@@ -34,20 +34,35 @@
 		
 		$(".chatBtn").click(function(){
 			getChatMember();
+			getChatMember2();
 		});
 		
 		$(document).on("click", ".profileImg", function (e) {
 			var name = $(this).find(".memPopup").text();
 			$(".msgPopupD li").eq(1).text(name);
 
-			var condition = $(this).find(".onlineId").text();
-			$(".msgPopupD li").eq(2).text(condition);
+			/* var condition = $(this).find(".onlineId").text();
+			$(".msgPopupD li").eq(2).text(condition); */
 						
 			var chatM_num = $(this).find("input").val();
 			$(".chatM_num").val(chatM_num);
 			console.log(".chatM_num : " + chatM_num);
 			
+			$(".chatProfile2").hide();
 			$(".chatProfile").show();
+	        $(".darkBack").show();
+		});
+		
+		$(document).on("click", ".profileImg2", function (e) {
+			var name = $(this).find(".memPopup2").text();
+			$(".msgPopupD2 li").eq(1).text(name);
+			
+			var chatM_num = $(this).find("input").val();
+			$(".chatM_num").val(chatM_num);
+			console.log(".chatM_num : " + chatM_num);
+			
+			$(".chatProfile").hide();
+			$(".chatProfile2").show();
 	        $(".darkBack").show();
 		});
 		
@@ -61,10 +76,31 @@
 		         return false;
 		     }
 		});
-		
-		/* getChatMember2(); */
-		
+				
 	});
+	
+	function set101(frm){
+		var m_num = $(".chatM_num").val();
+		var set = setChatMember2(m_num);
+		if (set != null) {
+			frm.action="getChatMember2_In.do?room_id=" + set;
+			frm.submit();
+		} else {
+		    frm.action="insert11Chat.do";
+		    frm.submit();
+		}
+	}
+	
+	function set202(frm){
+		var m_num = $(".chatM_num").val();
+		var set = setChatMember2(m_num);
+		if (set != null) {
+			frm.action="getChatMember2_In.do?room_id=" + set;
+			frm.submit;
+		} else {
+			alert("실패");
+		}
+	}
 	
 	/*====================================================================*/
 	
@@ -157,7 +193,6 @@
 				
 				$(".msgPopupA").html(a);
 			},
-			
 			error : function(){
 				
 			}		
@@ -169,18 +204,15 @@
 			type : "post",
 			dataType : "json",
 			success : function(data){
-				var originTxt = $(".msgPopupB").html();
-				var chatMember = "";
-				
+				var originTxt = "";
 				$.each(data, function(){
-					originTxt += "<a href='#' class='profileImg'>";
-					originTxt += "<input type='hidden' name='room_id' value='" + this.room_id + "'>";
+					originTxt += "<a href='#' class='profileImg2'>";
+					originTxt += "<input type='hidden' name='m_num' value='" + this.m_num + "'>";
 					originTxt += "<dl>";
-					originTxt += "<dt class='memPopup'>" + this.g_name + " " + this.role + "</dt>";
-					originTxt += "<dd class='onlineId'>" + this.content + "</dd>";
+					originTxt += "<dt class='memPopup2'>이민형 부장, " + this.g_name + " " + this.role + "</dt>";
 					originTxt += "</dl>";
 					originTxt += "</a>";
-				});
+				})
 				
 				$(".msgPopupB").html(originTxt);
 			},
@@ -190,6 +222,26 @@
 		});
 	}
 	
+	function setChatMember2(m_num) {
+			var set;
+		$.ajax("setChatMember2.do", {
+			type : "post",
+			dataType : "json",
+			async: false,
+			success : function(data){
+				$.each(data, function(){
+					if (m_num == this.m_num) {
+						set = this.room_id;
+					} 
+				})
+			},
+			error : function(request,status,error){
+				    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
+		});
+		
+		return set;
+	}
 	
 </script>
 <body>

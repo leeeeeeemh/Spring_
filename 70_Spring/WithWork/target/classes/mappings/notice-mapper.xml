@@ -12,7 +12,7 @@
 	
 	<insert id="insertMessenger" parameterType="notice">
 		INSERT INTO CHATMESSAGE2 (M_NUM, ROOM_ID, TIME, MESSAGE, ATTFILE, G_NUM, CM_NUM2)
-		VALUES (#{m_num}, (SELECT MAX(ROOM_ID) FROM CHATROOM), SYSDATE, #{message}, '첨부파일', 1, CM2_SEQ.NEXTVAL)
+		VALUES (#{m_num}, #{room_id}, SYSDATE, #{message}, '첨부파일', 1, CM2_SEQ.NEXTVAL)
 	</insert>
 	
 	<!-- 대화명 수정 -->
@@ -38,6 +38,7 @@
 		  FROM GUEST G, MEMBER M, CHATMESSAGE2 C
 		 WHERE G.G_NUM = M.G_NUM
 		   AND C.M_NUM = M.M_NUM
+		   AND C.ROOM_ID = #{room_id}
 		 ORDER BY C.CM_NUM2
 	</select>
 	
@@ -49,12 +50,43 @@
 	</select>
 	
 	<select id="getChatMember2" parameterType="notice" resultType="notice">
+		SELECT C1.ROOM_ID, C2.G_NAME, C2.ROLE, C2.CONTENT
+		  FROM (
 		SELECT *
-		  FROM CHATJOINER J, MEMBER M, GUEST G
-		 WHERE J.M_NUM = M.M_NUM
-		   AND G.G_NUM = M.G_NUM
-		   <!-- AND J.ROOM_ID = #{room_id} -->
-		 ORDER BY G.G_NAME
+		          FROM CHATJOINER J, MEMBER M, GUEST G
+		         WHERE J.M_NUM = M.M_NUM
+		           AND G.G_NUM = M.G_NUM
+		       AND M.M_NUM = 6) C1, 
+		(SELECT *
+		          FROM CHATJOINER J, MEMBER M, GUEST G
+		         WHERE J.M_NUM = M.M_NUM
+		           AND G.G_NUM = M.G_NUM 
+		          AND M.M_NUM != 6) C2
+		    WHERE C1.ROOM_ID = C2.ROOM_ID
+	</select>
+
+	<select id="setChatMember2" parameterType="notice" resultType="notice">
+		SELECT C1.ROOM_ID, C2.G_NAME, C2.ROLE, C2.CONTENT, C2.M_NUM
+		  FROM (
+		SELECT J.ROOM_ID
+		          FROM CHATJOINER J, MEMBER M, GUEST G
+		         WHERE J.M_NUM = M.M_NUM
+		           AND G.G_NUM = M.G_NUM
+		       AND M.M_NUM = 6) C1, 
+		(SELECT G.G_NAME, M.ROLE, M.CONTENT, M.M_NUM, J.ROOM_ID
+		          FROM CHATJOINER J, MEMBER M, GUEST G
+		         WHERE J.M_NUM = M.M_NUM
+		           AND G.G_NUM = M.G_NUM 
+		          AND M.M_NUM != 6) C2
+		    WHERE C1.ROOM_ID = C2.ROOM_ID
+	</select>
+	
+	<select id="getChatMember2_In" parameterType="notice" resultType="notice">
+		SELECT C2.ROOM_ID, G.G_NAME, M.ROLE, M.CONTENT, C2.MESSAGE, TO_CHAR(C2.TIME, 'AM HH12:MI') AS TIME
+		  FROM CHATMESSAGE2 C2, MEMBER M, GUEST G
+		 WHERE C2.M_NUM = M.M_NUM
+		   AND M.G_NUM = G.G_NUM
+		   AND C2.ROOM_ID = #{room_id}
 	</select>
 	
 	<!-- 멤버 검색 -->
@@ -70,21 +102,21 @@
 		INSERT INTO CHATROOM VALUES (ROOM_SEQ.NEXTVAL, SYSDATE)
 	</insert>
 	
+	<select id="getInsertRoom" parameterType="notice" resultType="notice">
+		SELECT C.M_NUM, C.ROOM_ID, 
+			   G.G_NAME, M.ROLE, M.CONTENT
+		  FROM GUEST G, MEMBER M, CHATJOINER C
+		 WHERE G.G_NUM = M.G_NUM
+		   AND C.M_NUM = M.M_NUM
+		   AND M.M_NUM = #{m_num}
+	</select>
+	
 	<insert id="insertChatJoiner" parameterType="notice">
 		INSERT INTO CHATJOINER
 		VALUES (CJ_SEQ.NEXTVAL, (SELECT MAX(ROOM_ID) FROM CHATROOM), #{m_num})
 	</insert>
 	
 </mapper>
-
-
-
-
-
-
-
-
-
 
 
 

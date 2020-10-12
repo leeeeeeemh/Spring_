@@ -1,10 +1,16 @@
 package com.spring.withwork.vo;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class NoticeVO {
+public class NoticeVO implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private int m_num;
 	private int room_id;
 	private String time;
@@ -17,16 +23,16 @@ public class NoticeVO {
 	private int cm_num2;
 	private int cj_num;
 	private int p_num;
+	private String content;
 	
 	//검색조건용 필드 추가
 	private String searchMember;
 		
 	public NoticeVO() {
-		System.out.println(">> NoticeVO() 객체 생성");
 	}
 
 	public NoticeVO(int m_num, int room_id, String time, String message, String attfile, int g_num,
-			String role, String g_name, int cm_num, int cm_num2, int cj_num, int p_num, String searchMember) {
+			String role, String g_name, int cm_num, int cm_num2, int cj_num, int p_num, String content, String searchMember) {
 		super();
 		this.m_num = m_num;
 		this.room_id = room_id;
@@ -40,6 +46,7 @@ public class NoticeVO {
 		this.cm_num2 = cm_num2;
 		this.cj_num = cj_num;
 		this.p_num = p_num;
+		this.content = content;
 		this.searchMember = searchMember;
 	}
 
@@ -139,14 +146,22 @@ public class NoticeVO {
 		this.p_num = p_num;
 	}
 
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
 	@Override
 	public String toString() {
 		return "NoticeVO [m_num=" + m_num + ", room_id=" + room_id + ", time=" + time + ", message=" + message
 				+ ", attfile=" + attfile + ", g_num=" + g_num + ", role=" + role + ", g_name=" + g_name + ", cm_num="
-				+ cm_num + ", cm_num2=" + cm_num2 + ", cj_num=" + cj_num + ", p_num=" + p_num + ", searchMember="
-				+ searchMember + "]";
+				+ cm_num + ", cm_num2=" + cm_num2 + ", cj_num=" + cj_num + ", p_num=" + p_num + ", content=" + content
+				+ ", searchMember=" + searchMember + "]";
 	}
-	
+
 	//============================================================
 
 	@JsonIgnore // JSON 데이타 변경하지 않도록 제외 처리

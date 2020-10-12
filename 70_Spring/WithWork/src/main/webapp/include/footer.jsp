@@ -247,21 +247,21 @@
                 </a> -->
             </div>
             <div class="msgPopupB">
-                <!-- <a href="#" class="profileImg">
+                <!-- <a href="#" class="profileImg2">
                     <dl>
-                        <dt class="memPopup">권은영 팀장, 최은서 부사장, 곽은진 과장</dt>
+                        <dt class="memPopup2">권은영 팀장, 최은서 부사장, 곽은진 과장</dt>
                         <dd class="onlineId">카트중...</dd>
                     </dl>
                 </a>
-                <a href="#" class="profileImg">
+                <a href="#" class="profileImg2">
                     <dl>
-                        <dt class="memPopup">이충진 상무, 박실 대리, 곽은진 과장</dt>
+                        <dt class="memPopup2">이충진 상무, 박실 대리, 곽은진 과장</dt>
                         <dd class="onlineId">의왕 단톡방입니다.(+산본)</dd>
                     </dl>
                 </a>
-                <a href="#" class="profileImg">
+                <a href="#" class="profileImg2">
                     <dl>
-                        <dt class="memPopup">이민형 사원, 유영준 인턴</dt>
+                        <dt class="memPopup2">이민형 사원, 유영준 인턴</dt>
                         <dd class="onlineId">인턴 정신교육중..</dd>
                     </dl>
                 </a> -->
@@ -271,7 +271,7 @@
     <div class="popupP chatProfile">
         <dl>
             <dt>
-                프로필
+               	 프로필
                 <a href="#" class="popupOK1">X</a>
             </dt>
             <dd>
@@ -280,15 +280,65 @@
                         <img src="img/profile.png" alt="" width="110px">
                     </li>
                     <li>권은영 팀장</li>
-                    <li>대화명을 입력하세요.</li>
+                    <li>
+                    	<a href='#' class='conMsg'>상태메세지를 입력해보세요.</a>
+                    </li>
                 </ul>
                 
                 <form action="insert11Chat.do" method="post" class="insertRoom">
                 
                 <div class="btnBox set2">
                 	<input type="hidden" class="chatM_num" name="m_num">
-                    <input type="submit" class="set11" value="1:1 채팅">
+                    <input type="button" class="set11" value="1:1 채팅" onclick="set101(this.form);">
                     <input type="button" class="set1n" value="채팅방 초대">
+                </div>
+                
+                </form>
+            </dd>
+        </dl>
+    </div>
+	<div class="popupP chatProfile2">
+        <dl>
+            <dt>
+               	 대화방
+                <a href="#" class="popupOK1">X</a>
+            </dt>
+            <dd>
+                <ul class="msgPopupD2">
+                    <li>
+                        <img src="img/profile.png" alt="" width="110px">
+                    </li>
+                    <li>이민형 부장, 권은영 팀장</li>
+                </ul>
+                
+                <form action="insert11Chat.do" method="post" class="insertRoom">
+                
+                <div class="btnBox set2">
+                	<input type="hidden" class="chatM_num" name="m_num">
+                    <input type="button" class="set11" value="채팅방 입장" onclick="set202(this.form);">
+                    <input type="button" class="set1n" value="채팅방 초대">
+                </div>
+                
+                </form>
+            </dd>
+        </dl>
+    </div>
+	<div class="popupP2 conditionMsg">
+        <dl>
+            <dt>상태메세지</dt>
+            <dd>
+                <ul class="msgPopupD2">
+                    <li class="projectSearch searchMemberChat2">
+                        <input type="text" name="condition">
+                    </li>
+                </ul>
+                
+                <form action="updateNotice.do" method="post" class="insertRoom">
+                
+                <div class="btnBox set2">
+                	<input type="hidden" class="chatM_num" name="m_num">
+                    <input type="button" class="set11" value="저장">
+                    <input type="button" class="set1n" value="취소">
                 </div>
                 
                 </form>

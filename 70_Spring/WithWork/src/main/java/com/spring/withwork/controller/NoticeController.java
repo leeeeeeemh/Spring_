@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,7 +18,7 @@ import com.spring.withwork.service.NoticeService;
 import com.spring.withwork.vo.NoticeVO;
 
 @Controller
-@SessionAttributes("notice") //notice 라는 이름의 Model이 있으면 Session에 저장
+@SessionAttributes({"notice", "room_id"})
 public class NoticeController {
 	
 	@Autowired
@@ -71,12 +72,10 @@ public class NoticeController {
 	@ResponseBody
 	@RequestMapping("/getNoticeList.do")
 	public List<NoticeVO> getNoticeList(NoticeVO vo, Model model) {
-		System.out.println(">>> 글 전체 목록 - String getNoticeList()");
 		
 		List<NoticeVO> notice = noticeService.getNoticeList(vo);
 		model.addAttribute("notice", notice);
 		
-		System.out.println("getNoticeList() notice : " + notice);
 		
 		return notice;
 	}
@@ -120,6 +119,25 @@ public class NoticeController {
 		return notice;
 	}
 	
+	@ResponseBody
+	@RequestMapping("/setChatMember2.do")
+	public List<NoticeVO> setChatMember2(NoticeVO vo) {
+		System.out.println(">>> 글 전체 목록 - String setChatMember2()");
+		
+		List<NoticeVO> notice = noticeService.setChatMember2(vo);
+		
+		System.out.println("setChatMember2() notice : " + notice);
+		
+		return notice;
+	}
+
+	@RequestMapping("/getChatMember2_In.do")
+	public String getChatMember2_In(NoticeVO vo, Model model) {
+		model.addAttribute("room_id", vo.getRoom_id());
+		
+		return "redirect:getChatMember2_In2.do";
+	}
+	
 	@RequestMapping("/insert11Chat.do")
 	public String insertRoom(NoticeVO vo) {
 		NoticeVO myMNUM = new NoticeVO();
@@ -130,11 +148,23 @@ public class NoticeController {
 		noticeService.insertRoom(vo);
 		noticeService.insertChatJoiner(vo);
 		noticeService.insertChatJoiner(myMNUM);
-		/* noticeService.getMessengerList(vo); */
 		
-		return "messenger.jsp";
+		return "getInsertRoom.do?m_num=" + vo.getM_num();
 	}
+	
+	@RequestMapping("/getInsertRoom.do")
+	public String getInsertRoom(NoticeVO vo) {
+		NoticeVO notice = noticeService.getInsertRoom(vo);
+		System.out.println("getInsertRoom() notice : " + notice);
+		
+		return "getChatMember2_In.do?room_id=" + notice.getRoom_id();
+	}
+	
+	@RequestMapping("/getChatMember2_In2.do")
+	public String getChatMember2_In2() {
 
+		return "redirect:messenger.jsp";
+	}
 	
 	@ResponseBody
 	@RequestMapping("/getNoticeList2.do")

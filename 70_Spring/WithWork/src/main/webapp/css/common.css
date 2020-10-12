@@ -644,6 +644,15 @@ footer {
     text-overflow: ellipsis;
 }
 
+.memPopup2 {
+    font-weight: 500;
+    padding-bottom: 18px;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 .onlineId {
     font-size: 13px;
     color: #999;
@@ -706,6 +715,10 @@ footer {
     text-overflow: ellipsis;
 }
 
+.msgPopupD2 li {
+	margin-bottom: 10px;
+}
+ 
 .popupP li:nth-child(3) {
     font-size: 14px;
     color: #999;
@@ -740,4 +753,83 @@ footer {
 .popupP .btnBox input:hover {
     background: #ff8400;
     color: white;
+}
+
+/********************** 상태메세지 창 (팝업)-민형 *************************/
+
+.popupP2 {
+	display: none;
+    position: fixed;
+    width: 20%;
+    min-height: 300px;
+    max-height: 700px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    background: white;
+    border: 1px solid #ddd;
+}
+
+.popupP2 dt {
+    padding: 20px 25px;
+    background: #272a44;
+    font-weight: 400;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+}
+
+.popupP2 dd {
+    padding: 20px 25px;
+}
+
+.popupP2 ul {
+    text-align: center;
+}
+
+.searchMemberChat2 {
+    width: 94%;
+    margin: 50px 0;
+    margin-left: 12px;
+    border: 1px solid #ddd;
+}
+
+.popupP2 .btnBox {
+    display: inline-block;
+    text-align: center;
+    font-size: 0;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.popupP2 .btnBox input {
+    display: inline-block;
+    width: 20%;
+    height: 44px;
+    line-height: 44px;
+    color: white;
+    background: #272a44;
+    font-size: 17px;
+    text-align: center;
+    border-radius: 44px;
+}
+
+.popupP2 .btnBox.set2 input{
+    width: 33%;
+    margin: 4px;
+}
+
+.popupP2 .btnBox input:hover {
+    background: #ff8400;
+    color: white;
+}
+
+.conMsg {
+	font-size: 13px;
+    color: #999;
+    font-weight: 400;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }

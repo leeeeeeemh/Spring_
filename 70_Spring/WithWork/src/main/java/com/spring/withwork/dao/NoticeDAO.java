@@ -59,6 +59,11 @@ public class NoticeDAO {
 		System.out.println("---> Mybatis로 insertRoom() 실행");
 		mybatis.insert("NoticeDAO.insertRoom", vo);
 	}
+
+	public NoticeVO getInsertRoom(NoticeVO vo) {
+		System.out.println("---> Mybatis로 getInsertRoom() 실행");
+		return mybatis.selectOne("NoticeDAO.getInsertRoom", vo);
+	}
 	
 	public void insertChatJoiner(NoticeVO vo) {
 		System.out.println("---> Mybatis로 insertChatJoiner() 실행");
@@ -75,6 +80,18 @@ public class NoticeDAO {
 		System.out.println("===> MyBatis로 getChatMember2() 실행");
 		
 		return mybatis.selectList("NoticeDAO.getChatMember2", vo);
+	}
+
+	public List<NoticeVO> setChatMember2(NoticeVO vo) {
+		System.out.println("===> MyBatis로 setChatMember2() 실행");
+		
+		return mybatis.selectList("NoticeDAO.setChatMember2", vo);
+	}
+
+	public List<NoticeVO> getChatMember2_In(NoticeVO vo) {
+		System.out.println("===> MyBatis로 getChatMember2_In() 실행");
+		
+		return mybatis.selectList("NoticeDAO.getChatMember2_In", vo);
 	}
 
 	public List<NoticeVO> getNoticeList2(NoticeVO vo) {

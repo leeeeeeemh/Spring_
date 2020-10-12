@@ -4,6 +4,7 @@ $().ready(function(){
     $(".pop dt a, .darkBack").click(function(){
         $(".pop").removeClass("show");
         $(".darkBack").hide();
+        $(".conditionMsg").hide();
     });
 
     // 팝업닫기
@@ -80,9 +81,28 @@ $().ready(function(){
         $(".darkBack").show();
     });
     
+    $(".profileImg2").click(function(){
+        $(".chatProfile2").show();
+        $(".darkBack").show();
+    });
+    
     //프로필 창 닫기
     $(".popupOK1").click(function(){
         $(".chatProfile").hide();
+        $(".chatProfile2").hide();
         $(".msgPopup").show();
     });
+    
+    //상태메세지 수정 창
+    $(".conMsg").click(function(){
+    	$(".conditionMsg").show();
+    	$(".darkBack").show();
+    });
+    
+    $(".set1n").click(function(){
+    	$(".conditionMsg").hide();
+    });
+    
 })
+
+
