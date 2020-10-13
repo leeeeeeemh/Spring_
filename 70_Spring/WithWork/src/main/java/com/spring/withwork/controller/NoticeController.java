@@ -31,7 +31,7 @@ public class NoticeController {
 	@ResponseBody
 	@RequestMapping("/insertNotice.do")
 	public int insertNotice(NoticeVO vo) {
-		vo.setM_num(6);
+		vo.setM_num(4);
 		System.out.println(">>> 메세지 입력 - insertNotice()");
 		System.out.println("> insertNotice() vo : " + vo);
 		
@@ -45,7 +45,7 @@ public class NoticeController {
 	@ResponseBody
 	@RequestMapping("/insertMessenger.do")
 	public int insertMessenger(NoticeVO vo) {
-		vo.setM_num(6);
+		vo.setM_num(4);
 		System.out.println(">>> 메세지 입력 - insertMessenger()");
 		System.out.println("> insertMessenger() vo : " + vo);
 		
@@ -59,7 +59,7 @@ public class NoticeController {
 	@ResponseBody
 	@RequestMapping("/updateNotice.do")
 	public int updateNotice(NoticeVO vo) {
-		vo.setM_num(6);
+		vo.setM_num(4);
 		System.out.println(">>> 상태메세지 수정 - updateNotice()");
 		System.out.println("> updateNotice() vo : " + vo);
 		
@@ -141,7 +141,7 @@ public class NoticeController {
 	@RequestMapping("/insert11Chat.do")
 	public String insertRoom(NoticeVO vo) {
 		NoticeVO myMNUM = new NoticeVO();
-		myMNUM.setM_num(6);
+		myMNUM.setM_num(4);
 		System.out.println(">>> 채팅방 생성 - insertRoom()");
 		System.out.println("> insertRoom() vo : " + vo);
 		

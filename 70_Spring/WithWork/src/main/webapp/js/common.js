@@ -22,6 +22,11 @@ function insertNotice() {
 	
 	var message = $(".textarea").val();
 	
+	if(message == ""){
+		alert("메세지를 입력하세요");
+		return;
+	}
+	
 	$.ajax("insertNotice.do", {
 		type : "post",
 		dataType : "json",
@@ -102,7 +107,7 @@ function getNoticeList() {
 	});
 }
 
-/*function getNoticeList_Search() {
+function getNoticeList_Search() {
 	
 	var searchMember = $(".searchBoxx").val();
 	
@@ -113,8 +118,13 @@ function getNoticeList() {
 		success : function(data){
 			if(searchMember != ""){
 				var a = "";
+					a += "<div class='projectSearch searchMemberChat'>"
+		            a += "<input type='text' placeholder='멤버를 검색하세요.' name='searchMember' class='searchBoxx'>"
+		            a += "<input type='button' value='' class='searchBtnn'>"
+			        a += "</div>"
 				$.each(data, function(){
 					a += "<a href='#' class='profileImg'>";
+					a += "<input type='hidden' name='m_num' value='" + this.m_num + "'>";
 					a += "<dl>";
 					a += "<dt class='memPopup'>" + this.g_name + " " + this.role + "</dt>";
 					a += "<dd class='onlineId'>" + this.content + "</dd>";
@@ -131,11 +141,11 @@ function getNoticeList() {
 			
 		}
 	});	
-}*/
+}
 
-function getNoticeList_Search() {
+function getNoticeList_Search2() {
 	
-	var searchMember = $(".searchBoxx").val();
+	var searchMember = $(".searchBoxx2").val();
 	
 	$.ajax("getNoticeList_Search.do", {
 		type : "post",
@@ -144,8 +154,13 @@ function getNoticeList_Search() {
 		success : function(data){
 			if(searchMember != ""){
 				var a = "";
+					a += "<div class='projectSearch searchMemberChat'>"
+		            a += "<input type='text' placeholder='대화방을 검색하세요.' name='searchMember' class='searchBoxx2'>"
+		            a += "<input type='button' value='' class='searchBtnn2'>"
+			        a += "</div>"
 				$.each(data, function(){
 					a += "<a href='#' class='profileImg2'>";
+					a += "<input type='hidden' name='room_id' value='" + this.room_id + "'>";
 					a += "<dl>";
 					a += "<dt class='memPopup2'>이민형 부장, " + this.g_name + " " + this.role + "</dt>";
 					a += "</dl>";
@@ -166,6 +181,11 @@ function getNoticeList_Search() {
 function insertMessenger(room_id) {
 	
 	var message = $(".textarea").val();
+	
+	if(message == ""){
+		alert("메세지를 입력하세요");
+		return;
+	}
 	
 	$.ajax("insertMessenger.do", {
 		type : "post",
@@ -214,6 +234,10 @@ function getChatMember() {
 		dataType : "json",
 		success : function(data){
 			var a = "";
+				a += "<div class='projectSearch searchMemberChat'>";
+	            a += "<input type='text' placeholder='멤버를 검색하세요.' name=searchMember class='searchBoxx'>"
+	            a += "<input type='button' value='' class='searchBtnn'>"
+		        a += "</div>"
 			$.each(data, function(){
 				a += "<a href='#' class='profileImg'>";
 				a += "<input type='hidden' name='m_num' value='" + this.m_num + "'>";
@@ -238,6 +262,10 @@ function getChatMember2() {
 		dataType : "json",
 		success : function(data){
 			var originTxt = "";
+				originTxt += "<div class='projectSearch searchMemberChat'>"
+	            originTxt += "<input type='text' placeholder='대화방을 검색하세요.' name=searchMember class='searchBoxx2'>"
+	            originTxt += "<input type='button' value='' class='searchBtnn2'>"
+		        originTxt += "</div>"
 			$.each(data, function(){
 				originTxt += "<a href='#' class='profileImg2'>";
 				originTxt += "<input type='hidden' name='room_id' value='" + this.room_id + "'>";
@@ -245,6 +273,7 @@ function getChatMember2() {
 				originTxt += "<dt class='memPopup2'>이민형 부장, " + this.g_name + " " + this.role + "</dt>";
 				originTxt += "</dl>";
 				originTxt += "</a>";
+				
 			})
 			
 			$(".msgPopupB").html(originTxt);
@@ -464,7 +493,6 @@ $().ready(function(){
 	});
 	
 
-	
 	//------------------ messenger.jsp -------------------------
 	
 	var room_id = $(".room_id").val();
@@ -478,6 +506,17 @@ $().ready(function(){
 	$(".textarea2").keypress(function(event){
 	     if (event.which == 13) {
 	         $(".sendBtn2").click();
+	         return false;
+	     }
+	});
+	
+	$(".searchBtnn2").click(function(){
+		getNoticeList_Search2();
+	});
+	
+	$(".searchBoxx2").keypress(function(event){
+	     if (event.which == 13) {
+	         $(".searchBtnn2").click();
 	         return false;
 	     }
 	});

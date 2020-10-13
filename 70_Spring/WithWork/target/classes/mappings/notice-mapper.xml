@@ -6,8 +6,8 @@
 
 	<!-- 메세지 입력 -->
 	<insert id="insertNotice" parameterType="notice">
-		INSERT INTO CHATMESSAGE (M_NUM, P_NUM, TIME, MESSAGE, ATTFILE, G_NUM, CM_NUM)
-		VALUES (#{m_num}, 1, SYSDATE, #{message}, '첨부파일', 1, CM_SEQ.NEXTVAL)
+		INSERT INTO CHATMESSAGE (CM_NUM, M_NUM, P_NUM, G_NUM, TIME, MESSAGE, ATTFILE)
+		VALUES (CM_SEQ.NEXTVAL, #{m_num}, 1, 1, SYSDATE, #{message}, '첨부파일')
 	</insert>
 	
 	<insert id="insertMessenger" parameterType="notice">
@@ -22,78 +22,87 @@
 
 	<!-- 전체 조회 -->	
 	<select id="getNoticeList" parameterType="notice" resultType="notice">
-		SELECT C.M_NUM, C.P_NUM, TO_CHAR(C.TIME, 'AM HH12:MI') AS TIME, C.MESSAGE, C.ATTFILE, C.G_NUM, C.CM_NUM,
-			   G.G_NUM, G.ID, G.PASSWORD, G.G_NAME, G.ADDRESS, G.EMAIL, G.PHONE, G.REGDATE,
-			   M.M_NUM, M.C_NUM, M.G_NUM, M.AUTHORITY, M.ROLE, M.D_NUM, M.CONTENT
-		  FROM GUEST G, MEMBER M, CHATMESSAGE C
-		 WHERE G.G_NUM = M.G_NUM
-		   AND C.M_NUM = M.M_NUM
-		 ORDER BY C.CM_NUM
+		SELECT G.G_NAME, R.ROLE, CM.MESSAGE, TO_CHAR(CM.TIME, 'AM HH12:MI') AS TIME
+		  FROM PROJECT P, PROJECTJOINER PJ, GUEST G, MEMBER M, CHATMESSAGE CM, ROLES R
+		 WHERE P.P_NUM = PJ.P_NUM
+	       AND PJ.M_NUM = M.M_NUM
+	       AND G.G_NUM = M.G_NUM
+		   AND R.R_NUM = M.R_NUM
+		   AND M.M_NUM = CM.M_NUM
+		 ORDER BY CM.CM_NUM
 	</select>
 	
 	<select id="getMessengerList" parameterType="notice" resultType="notice">
-		SELECT C.M_NUM, C.ROOM_ID, TO_CHAR(C.TIME, 'AM HH12:MI') AS TIME, C.MESSAGE, C.ATTFILE, C.G_NUM, C.CM_NUM2,
-			   G.G_NUM, G.ID, G.PASSWORD, G.G_NAME, G.ADDRESS, G.EMAIL, G.PHONE, G.REGDATE,
-			   M.M_NUM, M.C_NUM, M.G_NUM, M.AUTHORITY, M.ROLE, M.D_NUM, M.CONTENT
-		  FROM GUEST G, MEMBER M, CHATMESSAGE2 C
+		SELECT G.G_NAME, R.ROLE, C.MESSAGE, TO_CHAR(C.TIME, 'AM HH12:MI') AS TIME
+		  FROM GUEST G, MEMBER M, CHATMESSAGE2 C, ROLES R
 		 WHERE G.G_NUM = M.G_NUM
 		   AND C.M_NUM = M.M_NUM
+           AND M.R_NUM = R.R_NUM
 		   AND C.ROOM_ID = #{room_id}
 		 ORDER BY C.CM_NUM2
 	</select>
 	
 	<select id="getChatMember" parameterType="notice" resultType="notice">
-		SELECT *
-		  FROM GUEST G, MEMBER M
-		 WHERE G.G_NUM = M.G_NUM
+		SELECT G.G_NAME, R.ROLE, M.CONTENT, M.M_NUM
+		  FROM PROJECT P, PROJECTJOINER PJ, GUEST G, MEMBER M, ROLES R
+		 WHERE P.P_NUM = PJ.P_NUM
+		   AND PJ.M_NUM = M.M_NUM
+		   AND G.G_NUM = M.G_NUM
+		   AND R.R_NUM = M.R_NUM
 		 ORDER BY G.G_NAME
 	</select>
 	
 	<select id="getChatMember2" parameterType="notice" resultType="notice">
 		SELECT C1.ROOM_ID, C2.G_NAME, C2.ROLE, C2.CONTENT
-		  FROM (
-		SELECT *
-		          FROM CHATJOINER J, MEMBER M, GUEST G
+		  FROM (SELECT *
+		          FROM CHATJOINER J, MEMBER M, GUEST G, ROLES R
 		         WHERE J.M_NUM = M.M_NUM
 		           AND G.G_NUM = M.G_NUM
-		       AND M.M_NUM = 6) C1, 
-		(SELECT *
-		          FROM CHATJOINER J, MEMBER M, GUEST G
+		           AND M.R_NUM = R.R_NUM
+		           AND M.M_NUM = 4) C1, 
+		       (SELECT *
+		          FROM CHATJOINER J, MEMBER M, GUEST G, ROLES R
 		         WHERE J.M_NUM = M.M_NUM
 		           AND G.G_NUM = M.G_NUM 
-		          AND M.M_NUM != 6) C2
-		    WHERE C1.ROOM_ID = C2.ROOM_ID
+		           AND M.R_NUM = R.R_NUM
+		           AND M.M_NUM != 4) C2
+		 WHERE C1.ROOM_ID = C2.ROOM_ID
 	</select>
 
 	<select id="setChatMember2" parameterType="notice" resultType="notice">
 		SELECT C1.ROOM_ID, C2.G_NAME, C2.ROLE, C2.CONTENT, C2.M_NUM
-		  FROM (
-		SELECT J.ROOM_ID
-		          FROM CHATJOINER J, MEMBER M, GUEST G
+		  FROM (SELECT J.ROOM_ID
+		          FROM CHATJOINER J, MEMBER M, GUEST G, ROLES R
 		         WHERE J.M_NUM = M.M_NUM
 		           AND G.G_NUM = M.G_NUM
-		       AND M.M_NUM = 6) C1, 
-		(SELECT G.G_NAME, M.ROLE, M.CONTENT, M.M_NUM, J.ROOM_ID
-		          FROM CHATJOINER J, MEMBER M, GUEST G
+		           AND M.R_NUM = R.R_NUM
+		           AND M.M_NUM = 4) C1, 
+		       (SELECT G.G_NAME, R.ROLE, M.CONTENT, M.M_NUM, J.ROOM_ID
+		          FROM CHATJOINER J, MEMBER M, GUEST G, ROLES R
 		         WHERE J.M_NUM = M.M_NUM
-		           AND G.G_NUM = M.G_NUM 
-		          AND M.M_NUM != 6) C2
-		    WHERE C1.ROOM_ID = C2.ROOM_ID
+		           AND G.G_NUM = M.G_NUM
+		           AND M.R_NUM = R.R_NUM
+		           AND M.M_NUM != 4) C2
+		 WHERE C1.ROOM_ID = C2.ROOM_ID
 	</select>
 	
 	<select id="getChatMember2_In" parameterType="notice" resultType="notice">
-		SELECT C2.ROOM_ID, G.G_NAME, M.ROLE, M.CONTENT, C2.MESSAGE, TO_CHAR(C2.TIME, 'AM HH12:MI') AS TIME
-		  FROM CHATMESSAGE2 C2, MEMBER M, GUEST G
+		SELECT C2.ROOM_ID, G.G_NAME, R.ROLE, M.CONTENT, C2.MESSAGE, TO_CHAR(C2.TIME, 'AM HH12:MI') AS TIME
+		  FROM CHATMESSAGE2 C2, MEMBER M, GUEST G, ROLES R
 		 WHERE C2.M_NUM = M.M_NUM
 		   AND M.G_NUM = G.G_NUM
+		   AND M.R_NUM = R.R_NUM
 		   AND C2.ROOM_ID = #{room_id}
 	</select>
 	
 	<!-- 멤버 검색 -->
 	<select id="getNoticeList_Search" parameterType="notice" resultType="notice">
 		SELECT *
-		  FROM GUEST G, MEMBER M
-		 WHERE G.G_NUM = M.G_NUM
+		  FROM PROJECT P, PROJECTJOINER PJ, GUEST G, MEMBER M, ROLES R
+		 WHERE P.P_NUM = PJ.P_NUM
+		   AND PJ.M_NUM = M.M_NUM
+		   AND G.G_NUM = M.G_NUM
+		   AND R.R_NUM = M.R_NUM
 		   AND G_NAME LIKE '%'|| #{searchMember} ||'%' ORDER BY G_NAME
 	</select>
 	
@@ -103,11 +112,11 @@
 	</insert>
 	
 	<select id="getInsertRoom" parameterType="notice" resultType="notice">
-		SELECT C.M_NUM, C.ROOM_ID, 
-			   G.G_NAME, M.ROLE, M.CONTENT
-		  FROM GUEST G, MEMBER M, CHATJOINER C
+		SELECT C.M_NUM, C.ROOM_ID, G.G_NAME, R.ROLE, M.CONTENT
+		  FROM GUEST G, MEMBER M, CHATJOINER C, ROLES R
 		 WHERE G.G_NUM = M.G_NUM
 		   AND C.M_NUM = M.M_NUM
+      	   AND R.R_NUM = M.R_NUM
 		   AND M.M_NUM = #{m_num}
 	</select>
 	

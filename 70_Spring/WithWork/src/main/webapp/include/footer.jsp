@@ -172,97 +172,30 @@
             <li><a href="#">멤버</a></li>
             <li><a href="#">대화방</a></li>
         </ul>
-        <!-- 검색 영역 -->
-        <div class="projectSearch searchMemberChat">
-            <input type="text" placeholder="멤버를 검색하세요." name=searchMember class="searchBoxx">
-            <input type="button" value="" class="searchBtnn">
-        </div>
         <div class="msgPopupAll">
             <div class="msgPopupA">
+            	<!-- 검색 영역 -->
+	            <!-- <div class="projectSearch searchMemberChat">
+		            <input type="text" placeholder="멤버를 검색하세요." name=searchMember class="searchBoxx">
+		            <input type="button" value="" class="searchBtnn">
+		        	</div> -->
                 <!-- <a href="#" class="profileImg">
                     <dl>
                         <dt class="memPopup">권은영 팀장</dt>
                         <dd class="onlineId">카트 들어오세요</dd>
                     </dl>
-                </a>
-                <a href="#" class="profileImg">
-                    <dl>
-                        <dt class="memPopup">이충진 상무</dt>
-                        <dd class="onlineId">이클립스 끊었습니다.</dd>
-                    </dl>
-                </a>
-                <a href="#" class="profileImg">
-                    <dl>
-                        <dt class="memPopup">곽은진 과장</dt>
-                        <dd class="onlineId">아 배고파 ㅠㅠㅠ</dd>
-                    </dl>
-                </a>
-                <a href="#" class="profileImg">
-                    <dl>
-                        <dt class="memPopup">박실 대리</dt>
-                        <dd class="onlineId">아니,, 그니까~~</dd>
-                    </dl>
-                </a>
-                <a href="#" class="profileImg">
-                    <dl>
-                        <dt class="memPopup">이민형 사원</dt>
-                        <dd class="onlineId">자리비움</dd>
-                    </dl>
-                </a>
-                <a href="#" class="profileImg">
-                    <dl>
-                        <dt class="memPopup">원윤희 사원</dt>
-                        <dd class="onlineId">다들 말 좀 걸어줘요~</dd>
-                    </dl>
-                </a>
-                <a href="#" class="profileImg">
-                    <dl>
-                        <dt class="memPopup">유영준1 인턴</dt>
-                        <dd class="onlineId">소곤 소곤..</dd>
-                    </dl>
-                </a>
-                <a href="#" class="profileImg">
-                    <dl>
-                        <dt class="memPopup">유영준2 인턴</dt>
-                        <dd class="onlineId">소곤 소곤..</dd>
-                    </dl>
-                </a>
-                <a href="#" class="profileImg">
-                    <dl>
-                        <dt class="memPopup">유영준3 인턴</dt>
-                        <dd class="onlineId">소곤 소곤..</dd>
-                    </dl>
-                </a>
-                <a href="#" class="profileImg">
-                    <dl>
-                        <dt class="memPopup">원블리 인턴</dt>
-                        <dd class="onlineId">여자 이름같지만 남자입니다 ~</dd>
-                    </dl>
-                </a>
-                <a href="#" class="profileImg">
-                    <dl>
-                        <dt class="memPopup">유영준 인턴</dt>
-                        <dd class="onlineId">설문조사..</dd>
-                    </dl>
                 </a> -->
             </div>
             <div class="msgPopupB">
+            	<!-- 검색 영역 -->
+            	<!-- <div class="projectSearch searchMemberChat">
+		            <input type="text" placeholder="대화방을 검색하세요." name=searchMember class="searchBoxx2">
+		            <input type="button" value="" class="searchBtnn2">
+		        </div> -->
                 <!-- <a href="#" class="profileImg2">
                     <dl>
                         <dt class="memPopup2">권은영 팀장, 최은서 부사장, 곽은진 과장</dt>
                         <dd class="onlineId">카트중...</dd>
-                    </dl>
-                </a>
-                <a href="#" class="profileImg2">
-                    <dl>
-                        <dt class="memPopup2">이충진 상무, 박실 대리, 곽은진 과장</dt>
-                        <dd class="onlineId">의왕 단톡방입니다.(+산본)</dd>
-                    </dl>
-                </a>
-                <a href="#" class="profileImg2">
-                    <dl>
-                        <dt class="memPopup2">이민형 사원, 유영준 인턴</dt>
-                        <dd class="onlineId">인턴 정신교육중..</dd>
                     </dl>
                 </a> -->
             </div>            

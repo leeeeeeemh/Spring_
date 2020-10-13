@@ -36,46 +36,6 @@
 	                <dd class="chatTime">${chat.time }</dd>
 	            </dl>
             </c:forEach> --%>
-           
-            <!-- <ul>
-                <li class="chatBoxCont2">ㄴㅇㅁ라ㅕㅈ마ㅓㅜ</li>
-                <li class="chatTime2">오후 11:59</li>
-            </ul>
-            <ul>
-                <li class="chatBoxCont2">ㄴㅁ려ㅑㅗ뮈ㅈ</li>
-                <li class="chatTime2">오후 11:59</li>
-            </ul> -->
-            
-            <!-- <dl>
-                <dt>박실 대리</dt>
-                <dd class="chatBoxCont1">ㅋㅋㅋ</dd>
-                <dd class="chatTime">오전 09:37</dd>
-            </dl>
-            <dl>
-                <dt>곽은진 과장</dt>
-                <dd class="chatBoxCont1">나 속상해 ㅠㅠㅠ</dd>
-                <dd class="chatTime">오전 09:41</dd>
-            </dl>
-            <dl>
-                <dt>원윤희 사원</dt>
-                <dd class="chatBoxCont1">왜그래요 은진씨</dd>
-                <dd class="chatTime">오전 09:43</dd>
-            </dl>
-            <dl>
-                <dt>유영준 인턴</dt>
-                <dd class="chatBoxCont1">설문조사 하겠습니다.</dd>
-                <dd class="chatTime">오전 09:50</dd>
-            </dl>
-            <dl>
-                <dt>유영준 인턴</dt>
-                <dd class="chatBoxCont1">설문조사 완료되면 제 자리에 갖다놔 주세요 반장님 ^^</dd>
-                <dd class="chatTime">오전 09:51</dd>
-            </dl>
-            <dl>
-                <dt>이민형 사원</dt>
-                <dd class="chatBoxCont1">...네</dd>
-                <dd class="chatTime">오전 10:26</dd>
-            </dl> -->
         </div>
         <div class="chatFoot">
         

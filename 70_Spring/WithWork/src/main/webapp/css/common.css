@@ -572,9 +572,7 @@ footer {
 }
 
 .searchMemberChat {
-    width: 94%;
     margin: 20px 0;
-    margin-left: 12px;
     border: 1px solid #ddd;
 }
 
@@ -612,8 +610,7 @@ footer {
 .msgPopupAll {
     overflow: auto;
     border-top: 1px solid #ddd;
-    padding-top: 20px;
-    padding-left: 20px;
+    margin: 0 20px;
 }
 
 .msgPopupAll dl {
@@ -789,9 +786,7 @@ footer {
 }
 
 .searchMemberChat2 {
-    width: 94%;
     margin: 50px 0;
-    margin-left: 12px;
     border: 1px solid #ddd;
 }
 
