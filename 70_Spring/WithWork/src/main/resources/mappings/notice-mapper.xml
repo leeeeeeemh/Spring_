@@ -17,7 +17,7 @@
 	
 	<!-- 대화명 수정 -->
 	<update id="updateNotice" parameterType="notice">
-		UPDATE MEMBER SET CONTENT = '자리비움' WHERE M_NUM = 1
+		UPDATE MEMBER SET CONTENT = '#{content}' WHERE M_NUM = #{m_num}
 	</update>
 
 	<!-- 전체 조회 -->	

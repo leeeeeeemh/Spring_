@@ -59,7 +59,8 @@ public class NoticeController {
 	@ResponseBody
 	@RequestMapping("/updateNotice.do")
 	public int updateNotice(NoticeVO vo) {
-		System.out.println(">>> 대화명 수정 - updateNotice()");
+		vo.setM_num(6);
+		System.out.println(">>> 상태메세지 수정 - updateNotice()");
 		System.out.println("> updateNotice() vo : " + vo);
 		
 		int notice = noticeService.updateNotice(vo);
@@ -75,7 +76,6 @@ public class NoticeController {
 		
 		List<NoticeVO> notice = noticeService.getNoticeList(vo);
 		model.addAttribute("notice", notice);
-		
 		
 		return notice;
 	}

@@ -159,9 +159,9 @@ public class NoticeVO implements Serializable {
 		return "NoticeVO [m_num=" + m_num + ", room_id=" + room_id + ", time=" + time + ", message=" + message
 				+ ", attfile=" + attfile + ", g_num=" + g_num + ", role=" + role + ", g_name=" + g_name + ", cm_num="
 				+ cm_num + ", cm_num2=" + cm_num2 + ", cj_num=" + cj_num + ", p_num=" + p_num + ", content=" + content
-				+ ", searchMember=" + searchMember + "]";
+				+ ", searchMember="	+ searchMember + "]";
 	}
-
+	
 	//============================================================
 
 	@JsonIgnore // JSON 데이타 변경하지 않도록 제외 처리

@@ -276,6 +276,13 @@
             </dt>
             <dd>
                 <ul class="msgPopupD">
+                    <!-- <li>
+                        <img src="img/profile.png" alt="" width="110px">
+                    </li>
+                    <li>권은영 팀장</li>
+                    <li>
+                    	<a href='#' class='conMsg'>상태메세지를 입력해보세요.</a>
+                    </li> -->
                     <li>
                         <img src="img/profile.png" alt="" width="110px">
                     </li>
@@ -314,7 +321,7 @@
                 <form action="insert11Chat.do" method="post" class="insertRoom">
                 
                 <div class="btnBox set2">
-                	<input type="hidden" class="chatM_num" name="m_num">
+                	<input type="hidden" class="chatRoom_id" name="room_id">
                     <input type="button" class="set11" value="채팅방 입장" onclick="set202(this.form);">
                     <input type="button" class="set1n" value="채팅방 초대">
                 </div>
@@ -327,18 +334,19 @@
         <dl>
             <dt>상태메세지</dt>
             <dd>
+            
+               	<form action="updateNotice.do" method="post">
+               	
                 <ul class="msgPopupD2">
                     <li class="projectSearch searchMemberChat2">
-                        <input type="text" name="condition">
+                        <input type="text" name="content" class="conText">
                     </li>
                 </ul>
                 
-                <form action="updateNotice.do" method="post" class="insertRoom">
-                
                 <div class="btnBox set2">
                 	<input type="hidden" class="chatM_num" name="m_num">
-                    <input type="button" class="set11" value="저장">
-                    <input type="button" class="set1n" value="취소">
+                    <input type="button" class="set99" value="저장">
+                    <input type="button" class="set44" value="취소">
                 </div>
                 
                 </form>
